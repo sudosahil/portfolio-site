@@ -6,6 +6,56 @@ import { AnimateSection } from "@/components/AnimateSection";
 import { SectionLabel } from "@/components/SectionLabel";
 import { ProjectCard } from "@/components/ProjectCard";
 import { HookForm } from "@/components/HookForm";
+import { ProjectShowcaseCard, ShowcaseProject } from "@/components/ProjectShowcaseCard";
+
+// ─── LIVE PROJECTS ─────────────────────────────────────────────────────────
+const showcaseProjects: ShowcaseProject[] = [
+  {
+    name: "Samrat Motor Driving School",
+    description:
+      "Full business website for a driving school established in 2000 in Chhatrapati Sambhajinagar. Features course listings, how-it-works flow, Google reviews, and WhatsApp enquiry CTAs.",
+    liveUrl: "https://samrat-driving-school-zc3d.vercel.app/",
+    category: "Business",
+    techStack: ["Next.js", "Tailwind CSS", "Vercel"],
+    year: "2024",
+  },
+  {
+    name: "Bombay Gaming Company",
+    description:
+      "Online booking platform for Ghatkopar's premier gaming café — PC, PlayStation, and Pool Table sessions bookable in real time. Integrated Razorpay for payments.",
+    liveUrl: "https://bombaygamingcompany.vercel.app/",
+    category: "Web App",
+    techStack: ["React", "Vite", "Razorpay", "Tailwind CSS"],
+    year: "2025",
+  },
+  {
+    name: "Earthen Routes",
+    description:
+      "NGO website for a community farm inside TATA ACTREC Hospital, growing organic food for paediatric cancer patients. Includes volunteer sign-up, donation flow, and blog.",
+    liveUrl: "https://earthenroutes.in/",
+    category: "NGO",
+    techStack: ["React", "Tailwind CSS", "Vercel"],
+    year: "2024",
+  },
+  {
+    name: "TheoremLabs",
+    description:
+      "Corporate website for TheoremLabs — a technology and innovation studio. Clean, animated multi-page site with team profiles, services, and contact.",
+    liveUrl: "https://theoremlabs-xi.vercel.app/",
+    category: "Corporate",
+    techStack: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+    year: "2025",
+  },
+  {
+    name: "Personal Portfolio",
+    description:
+      "This site. A scroll-driven portfolio for a Mumbai-based web developer with a scrollytelling hero, 3D project cards, and a lead capture form for business enquiries.",
+    liveUrl: "https://sahilundale.in",
+    category: "Portfolio",
+    techStack: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    year: "2025",
+  },
+];
 
 const containerVariants = {
   hidden: {},
@@ -93,21 +143,40 @@ export default function MyProjectsPage() {
   return (
     <div>
       {/* ─── Hero ─── */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      <section className="max-w-7xl mx-auto px-6 pt-20 pb-10">
         <AnimateSection>
           <SectionLabel>// my projects</SectionLabel>
-          <h1 className="text-[42px] md:text-[52px] font-semibold tracking-[-0.03em] text-text-primary mt-2 mb-3">
-            Here&apos;s what I build.
+          <h1 className="text-[42px] md:text-[56px] font-semibold tracking-[-0.03em] text-text-primary mt-2 mb-4 leading-[1.05]">
+            Things I&apos;ve built<br className="hidden md:block" /> and shipped.
           </h1>
-          <p className="text-[15px] text-text-secondary max-w-lg">
-            Clean, fast websites for businesses that deserve a real online presence. Could do it for
-            your brand too.
+          <p className="text-[15px] text-text-secondary max-w-xl leading-[1.75]">
+            Live projects — hover any card to preview the site. Click to open it.
           </p>
         </AnimateSection>
       </section>
 
+      {/* ─── Live 3D Showcase Cards ─── */}
+      <section className="max-w-7xl mx-auto px-6 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {showcaseProjects.map((project, i) => (
+            <ProjectShowcaseCard key={project.name} project={project} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* ─── Divider ─── */}
+      <div className="max-w-7xl mx-auto px-6 py-10">
+        <div className="border-t border-[rgba(255,255,255,0.07)]" />
+      </div>
+
       {/* ─── Services Grid ─── */}
       <section className="max-w-7xl mx-auto px-6 pb-20">
+        <AnimateSection>
+          <SectionLabel>// what i build</SectionLabel>
+          <h2 className="text-[32px] font-semibold tracking-[-0.02em] text-text-primary mt-1 mb-10">
+            Here&apos;s what I offer.
+          </h2>
+        </AnimateSection>
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 border border-[rgba(255,255,255,0.07)]"
           variants={containerVariants}
@@ -143,7 +212,6 @@ export default function MyProjectsPage() {
       <section className="bg-surface py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-16 items-start">
-            {/* Left */}
             <div className="flex-1 md:w-[65%]">
               <AnimateSection>
                 <SectionLabel>// for business owners</SectionLabel>
@@ -163,20 +231,8 @@ export default function MyProjectsPage() {
                     "You talk to me directly. Not an account manager.",
                   ].map((t) => (
                     <div key={t} className="flex items-start gap-3">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        className="mt-0.5 shrink-0"
-                      >
-                        <path
-                          d="M2.5 7L5.5 10L11.5 4"
-                          stroke="#8b8fff"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-0.5 shrink-0">
+                        <path d="M2.5 7L5.5 10L11.5 4" stroke="#8b8fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       <p className="font-mono text-[11px] text-text-secondary">{t}</p>
                     </div>
@@ -184,7 +240,6 @@ export default function MyProjectsPage() {
                 </div>
               </AnimateSection>
             </div>
-            {/* Right — HookForm */}
             <AnimateSection delay={0.12} className="w-full md:w-[35%]">
               <HookForm />
             </AnimateSection>
@@ -192,35 +247,8 @@ export default function MyProjectsPage() {
         </div>
       </section>
 
-      {/* ─── Selected Work / Projects ─── */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <AnimateSection>
-          <SectionLabel>// selected work</SectionLabel>
-          <h2 className="text-[32px] font-semibold tracking-[-0.02em] text-text-primary mt-1 mb-3">
-            Things I&apos;ve shipped.
-          </h2>
-          <p className="text-[15px] text-text-secondary mb-12">A few projects worth talking about.</p>
-        </AnimateSection>
-        <div>
-          {projects.map((p, i) => (
-            <AnimateSection key={p.name} delay={Math.min(i * 0.06, 0.3)}>
-              <ProjectCard
-                index={i + 1}
-                name={p.name}
-                type={p.type}
-                year={p.year}
-                description={p.description}
-                techStack={p.techStack}
-                liveUrl={p.liveUrl}
-                flip={i % 2 !== 0}
-              />
-            </AnimateSection>
-          ))}
-        </div>
-      </section>
-
       {/* ─── Bottom CTA ─── */}
-      <section className="bg-surface py-20">
+      <section className="bg-[#0e0e12] py-20">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <AnimateSection className="max-w-lg">
             <h2 className="font-serif italic text-[28px] md:text-[32px] text-warm leading-[1.3]">
@@ -253,3 +281,7 @@ export default function MyProjectsPage() {
     </div>
   );
 }
+
+
+
+
