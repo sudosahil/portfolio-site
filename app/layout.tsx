@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { PageTransition } from "@/components/PageTransition";
+import { PageDecorations } from "@/components/PageDecorations";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
       className={`${inter.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="bg-bg text-text-primary font-sans antialiased min-h-screen flex flex-col">
+        <PageDecorations />
         <Nav />
         <PageTransition>
           <main className="flex-1">{children}</main>

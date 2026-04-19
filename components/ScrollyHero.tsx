@@ -51,7 +51,7 @@ export function ScrollyHero() {
     <>
       <div
         ref={sectionRef}
-        style={{ height: "600vh", position: "relative" }}
+        style={{ height: "1200vh", position: "relative" }}
         onWheel={(e) => e.stopPropagation()}
       >
         <div
@@ -69,7 +69,7 @@ export function ScrollyHero() {
             touchAction: "pan-y",
           }}
         >
-          <CursorObject activeBeat={activeBeat} />
+          {/* Note: CursorObject was removed as PageDecorations now handles standard global graphics */}
 
           {/* Beat 1 — Intro: visible on load, exits at 20% */}
           <CopyBeat beatNum={1} activeBeat={activeBeat} position="center">
