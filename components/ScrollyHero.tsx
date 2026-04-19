@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from "react";
 import { useScroll, useSpring, useMotionValueEvent, useReducedMotion, motion } from "framer-motion";
 import Link from "next/link";
 import { CopyBeat } from "./CopyBeat";
-import { CursorObject } from "./CursorObject";
 import { BeatIndicator } from "./BeatIndicator";
 import { ScrollHint } from "./ScrollHint";
 

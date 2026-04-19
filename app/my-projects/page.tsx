@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimateSection } from "@/components/AnimateSection";
 import { SectionLabel } from "@/components/SectionLabel";
-import { ProjectCard } from "@/components/ProjectCard";
 import { HookForm } from "@/components/HookForm";
 import { ProjectShowcaseCard, ShowcaseProject } from "@/components/ProjectShowcaseCard";
 
@@ -94,50 +93,7 @@ const services = [
   },
 ];
 
-const projects = [
-  {
-    name: "Personal Portfolio Website",
-    type: "Web Studio",
-    year: "2025",
-    description:
-      "A personal portfolio site focused on local Indian businesses. Designed to communicate speed and quality. Built to rank on Google and convert local business owners.",
-    techStack: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    liveUrl: "#",
-  },
-  {
-    name: "Client E-commerce Store",
-    type: "E-commerce",
-    year: "2025",
-    description:
-      "A full Shopify build for a D2C brand. Included product page optimization, conversion-focused layout, and daily performance tracking. Helped identify high-performing SKUs for ad spend.",
-    techStack: ["Shopify", "Liquid", "JavaScript", "Analytics"],
-  },
-  {
-    name: "Local Business Landing Page",
-    type: "Landing Page",
-    year: "2024",
-    description:
-      "A high-converting single-page site for a Mumbai-based service business. Focused on mobile experience, WhatsApp CTAs, and Google ranking for local search terms.",
-    techStack: ["React", "Tailwind CSS", "Vercel"],
-    liveUrl: "#",
-  },
-  {
-    name: "AI Model Evaluation Dashboard",
-    type: "Research Tool",
-    year: "2025",
-    description:
-      "Internal tool built during research internship at NGC. Tracked AI model performance metrics from structured prompt evaluations. Enabled the team to compare models side by side.",
-    techStack: ["Python", "React", "SQLite", "Charts.js"],
-  },
-  {
-    name: "Government Client System",
-    type: "Business System",
-    year: "2025",
-    description:
-      "End-to-end full-stack system for a government-sector client at Atraya Technologies. Built with role-based access control, formal requirement specs, and full SDLC from analysis to deployment.",
-    techStack: ["Node.js", "React", "PostgreSQL", "REST API"],
-  },
-];
+
 
 export default function MyProjectsPage() {
   return (

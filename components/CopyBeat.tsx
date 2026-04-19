@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, CSSProperties } from "react";
+import { ReactNode } from "react";
 
 type Position = "center" | "left" | "right";
 
