@@ -1,65 +1,32 @@
 "use client";
 
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface CursorObjectProps {
-  scrollYProgress: MotionValue<number>;
+  activeBeat: number;
 }
-
-const COLS = 20;
-const ROWS = 14;
-const SPACING = 12;
 
 function DotGrid() {
   const dots = [];
-  for (let row = 0; row < ROWS; row++) {
-    for (let col = 0; col < COLS; col++) {
+  for (let row = 0; row < 14; row++) {
+    for (let col = 0; col < 20; col++) {
       dots.push(
         <circle
           key={`${row}-${col}`}
-          cx={col * SPACING}
-          cy={row * SPACING}
+          cx={col * 12}
+          cy={row * 12}
           r="1"
           fill="rgba(139,143,255,0.06)"
         />
       );
     }
   }
-  return <g transform="translate(0, 0)">{dots}</g>;
+  return <g>{dots}</g>;
 }
 
-export function CursorObject({ scrollYProgress }: CursorObjectProps) {
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.47, 0.72, 1],
-    [0.9, 0.4, 0.6, 0.3, 0.3]
-  );
-  const x = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.47, 0.72, 1],
-    [0, 20, -10, 0, 0]
-  );
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.47, 0.72, 1],
-    [0, -10, 10, 20, 20]
-  );
-
+function CursorSVG() {
   return (
-    <motion.div
-      style={{
-        opacity,
-        x,
-        y,
-        position: "absolute",
-        left: "62%",
-        top: "35%",
-        zIndex: 5,
-        pointerEvents: "none",
-        transform: "translate(-50%, -50%)",
-      }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-    >
+    <div style={{ position: "relative" }}>
       <svg
         width="360"
         height="280"
@@ -68,40 +35,18 @@ export function CursorObject({ scrollYProgress }: CursorObjectProps) {
         xmlns="http://www.w3.org/2000/svg"
         style={{ overflow: "visible" }}
       >
-        {/* Dot grid */}
         <DotGrid />
-
-        {/* Browser frame */}
         <rect
-          x="40"
-          y="40"
-          width="280"
-          height="190"
-          rx="12"
-          stroke="rgba(139,143,255,0.15)"
-          strokeWidth="1"
-          fill="none"
+          x="40" y="40" width="280" height="190" rx="12"
+          stroke="rgba(139,143,255,0.15)" strokeWidth="1" fill="none"
         />
-
-        {/* Top bar circles */}
         <circle cx="60" cy="58" r="4" fill="rgba(255,255,255,0.08)" />
         <circle cx="76" cy="58" r="4" fill="rgba(255,255,255,0.08)" />
         <circle cx="92" cy="58" r="4" fill="rgba(255,255,255,0.08)" />
-
-        {/* Separator line below top bar */}
-        <line
-          x1="40"
-          y1="70"
-          x2="320"
-          y2="70"
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="1"
-        />
-
-        {/* Cursor arrow — bottom right of frame */}
+        <line x1="40" y1="70" x2="320" y2="70" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
         <g
           transform="translate(288, 200)"
-          filter="url(#cursorShadow)"
+          style={{ filter: "drop-shadow(0 4px 12px rgba(139,143,255,0.3))" }}
         >
           <path
             d="M0 0 L0 22 L5.5 16.5 L9.5 24 L12 23 L8 15.5 L15.5 15.5 Z"
@@ -109,101 +54,97 @@ export function CursorObject({ scrollYProgress }: CursorObjectProps) {
             fillOpacity="0.7"
           />
         </g>
-
-        {/* Click ripples */}
-        <motion.circle
-          cx="294"
-          cy="211"
-          r="16"
-          stroke="#8b8fff"
-          strokeWidth="1"
-          fill="none"
-          opacity="0.2"
-          animate={{ scale: [1, 1.4, 1] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          style={{ transformOrigin: "294px 211px" }}
-        />
-        <motion.circle
-          cx="294"
-          cy="211"
-          r="28"
-          stroke="#8b8fff"
-          strokeWidth="1"
-          fill="none"
-          opacity="0.1"
-          animate={{ scale: [1, 1.4, 1] }}
-          transition={{
-            duration: 2.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.4,
-          }}
-          style={{ transformOrigin: "294px 211px" }}
-        />
-
-        <defs>
-          <filter id="cursorShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow
-              dx="0"
-              dy="4"
-              stdDeviation="6"
-              floodColor="rgba(139,143,255,0.3)"
-            />
-          </filter>
-        </defs>
       </svg>
 
-      {/* Floating code labels — outside SVG so font renders correctly */}
+      {/* Code labels — opacity pulse only, no y movement */}
       <motion.span
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.25, 0.1, 0.25] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          position: "absolute",
-          top: 32,
-          left: 32,
+          position: "absolute", top: 32, left: 32,
           fontFamily: "var(--font-dm-mono), monospace",
-          fontSize: 11,
-          color: "rgba(139,143,255,0.25)",
-          pointerEvents: "none",
-          whiteSpace: "nowrap",
+          fontSize: 11, color: "rgba(139,143,255,1)",
+          pointerEvents: "none", whiteSpace: "nowrap",
         }}
       >
         {"<web />"}
       </motion.span>
-
       <motion.span
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 3.7, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.25, 0.1, 0.25] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          position: "absolute",
-          top: 32,
-          right: 40,
+          position: "absolute", top: 32, right: 40,
           fontFamily: "var(--font-dm-mono), monospace",
-          fontSize: 11,
-          color: "rgba(139,143,255,0.25)",
-          pointerEvents: "none",
-          whiteSpace: "nowrap",
+          fontSize: 11, color: "rgba(139,143,255,1)",
+          pointerEvents: "none", whiteSpace: "nowrap",
         }}
       >
         {"design()"}
       </motion.span>
-
       <motion.span
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.25, 0.1, 0.25] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          position: "absolute",
-          bottom: 40,
-          left: 32,
+          position: "absolute", bottom: 40, left: 32,
           fontFamily: "var(--font-dm-mono), monospace",
-          fontSize: 11,
-          color: "rgba(139,143,255,0.25)",
-          pointerEvents: "none",
-          whiteSpace: "nowrap",
+          fontSize: 11, color: "rgba(139,143,255,1)",
+          pointerEvents: "none", whiteSpace: "nowrap",
         }}
       >
         {"{ build }"}
       </motion.span>
-    </motion.div>
+    </div>
+  );
+}
+
+// Right-side cursor configs (beats 1, 2, 3, 5)
+// beat 5 uses bottom:10% → converted to top: calc(90% - 280px)
+const RIGHT_CONFIG: Record<number, { right: string; top: string; opacity: number; scale: number }> = {
+  1: { right: "8%",  top: "calc(50% - 140px)", opacity: 0.5,  scale: 1    },
+  2: { right: "6%",  top: "calc(45% - 140px)", opacity: 0.35, scale: 0.95 },
+  3: { right: "7%",  top: "calc(48% - 140px)", opacity: 0.3,  scale: 0.9  },
+  5: { right: "5%",  top: "calc(90% - 280px)", opacity: 0.2,  scale: 0.85 },
+};
+
+export function CursorObject({ activeBeat }: CursorObjectProps) {
+  const rightCfg = RIGHT_CONFIG[activeBeat] ?? RIGHT_CONFIG[1];
+  const rightVisible = [1, 2, 3, 5].includes(activeBeat);
+
+  return (
+    <>
+      {/* Right side: beats 1, 2, 3, 5 */}
+      <div
+        style={{
+          position: "absolute",
+          right: rightCfg.right,
+          top: rightCfg.top,
+          zIndex: 5,
+          pointerEvents: "none",
+          opacity: rightVisible ? rightCfg.opacity : 0,
+          transform: `scale(${rightCfg.scale}) translateZ(0)`,
+          transition: "opacity 0.6s ease",
+          willChange: "opacity",
+        }}
+      >
+        <CursorSVG />
+      </div>
+
+      {/* Left side: beat 4 only */}
+      <div
+        style={{
+          position: "absolute",
+          left: "6%",
+          top: "calc(45% - 140px)",
+          zIndex: 5,
+          pointerEvents: "none",
+          opacity: activeBeat === 4 ? 0.35 : 0,
+          transform: "scale(0.95) translateZ(0)",
+          transition: "opacity 0.6s ease",
+          willChange: "opacity",
+        }}
+      >
+        <CursorSVG />
+      </div>
+    </>
   );
 }

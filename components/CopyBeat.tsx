@@ -1,64 +1,37 @@
 "use client";
 
-import { useTransform, motion, MotionValue } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 type Position = "center" | "left" | "right";
 
 interface CopyBeatProps {
-  scrollYProgress: MotionValue<number>;
-  enterAt: number;
-  peakStart: number;
-  peakEnd: number;
-  exitAt: number | null;
+  beatNum: number;
+  activeBeat: number;
   position: Position;
   children: ReactNode;
 }
 
-export function CopyBeat({
-  scrollYProgress,
-  enterAt,
-  peakStart,
-  peakEnd,
-  exitAt,
-  position,
-  children,
-}: CopyBeatProps) {
-  const exits = exitAt !== null;
-  const keyframes = exits
-    ? [enterAt, peakStart, peakEnd, exitAt as number]
-    : [enterAt, peakStart, peakEnd, 1];
+export function CopyBeat({ beatNum, activeBeat, position, children }: CopyBeatProps) {
+  const isActive = beatNum === activeBeat;
+  const isAdjacent = Math.abs(beatNum - activeBeat) === 1;
 
-  const opacity = useTransform(
-    scrollYProgress,
-    keyframes,
-    exits ? [0, 1, 1, 0] : [0, 1, 1, 1]
-  );
+  if (!isActive && !isAdjacent) return null;
 
-  const y = useTransform(
-    scrollYProgress,
-    keyframes,
-    exits ? [20, 0, 0, -20] : [20, 0, 0, 0]
-  );
-
-  const alignItems =
-    position === "center"
-      ? "center"
-      : position === "left"
-      ? "flex-start"
-      : "flex-end";
-
-  const textAlign: "center" | "left" | "right" =
+  const alignItems: CSSProperties["alignItems"] =
+    position === "center" ? "center" : position === "left" ? "flex-start" : "flex-end";
+  const textAlign: CSSProperties["textAlign"] =
     position === "center" ? "center" : position === "left" ? "left" : "right";
+  const paddingLeft = position === "left" ? "10%" : "0";
+  const paddingRight = position === "right" ? "10%" : "0";
 
-  const paddingLeft = position === "left" ? "10%" : position === "center" ? "0" : "0";
-  const paddingRight = position === "right" ? "10%" : position === "center" ? "0" : "0";
+  const translateY = isActive ? 0 : beatNum < activeBeat ? -20 : 20;
 
   return (
-    <motion.div
+    <div
       style={{
-        opacity,
-        y,
+        opacity: isActive ? 1 : 0,
+        transform: `translateY(${translateY}px)`,
+        transition: "opacity 0.5s ease, transform 0.5s ease",
         position: "absolute",
         inset: 0,
         zIndex: 10,
@@ -70,12 +43,13 @@ export function CopyBeat({
         paddingLeft,
         paddingRight,
         textAlign,
-        paddingTop: "4rem",
+        willChange: "opacity, transform",
+        backfaceVisibility: "hidden",
       }}
     >
       <div style={{ maxWidth: position === "center" ? 700 : 560 }}>
         {children}
       </div>
-    </motion.div>
+    </div>
   );
 }

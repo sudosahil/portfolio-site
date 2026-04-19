@@ -1,24 +1,26 @@
 "use client";
 
-import { motion, useTransform, MotionValue } from "framer-motion";
+import { useState } from "react";
+import { useMotionValueEvent, MotionValue } from "framer-motion";
 
 interface BeatIndicatorProps {
   scrollYProgress: MotionValue<number>;
 }
 
-const BEATS = [0, 1, 2, 3];
-const BREAKPOINTS = [0, 0.2, 0.47, 0.72];
+const BREAKPOINTS = [0, 0.2, 0.4, 0.6, 0.8];
+
+function getActiveBeat(v: number): number {
+  for (let i = BREAKPOINTS.length - 1; i >= 0; i--) {
+    if (v >= BREAKPOINTS[i]) return i;
+  }
+  return 0;
+}
 
 export function BeatIndicator({ scrollYProgress }: BeatIndicatorProps) {
-  const activeBeatValue = useTransform(scrollYProgress, (v) => {
-    let active = 0;
-    for (let i = BREAKPOINTS.length - 1; i >= 0; i--) {
-      if (v >= BREAKPOINTS[i]) {
-        active = i;
-        break;
-      }
-    }
-    return active;
+  const [activeBeat, setActiveBeat] = useState(0);
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setActiveBeat(getActiveBeat(v));
   });
 
   return (
@@ -35,37 +37,18 @@ export function BeatIndicator({ scrollYProgress }: BeatIndicatorProps) {
         pointerEvents: "none",
       }}
     >
-      {BEATS.map((beat) => (
-        <BeatDot key={beat} beat={beat} activeBeatValue={activeBeatValue} />
+      {BREAKPOINTS.map((_, i) => (
+        <div
+          key={i}
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            backgroundColor: activeBeat === i ? "#8b8fff" : "rgba(255,255,255,0.15)",
+            transition: "background-color 0.2s ease",
+          }}
+        />
       ))}
     </div>
-  );
-}
-
-function BeatDot({
-  beat,
-  activeBeatValue,
-}: {
-  beat: number;
-  activeBeatValue: MotionValue<number>;
-}) {
-  const scale = useTransform(activeBeatValue, (active) =>
-    active === beat ? 1.3 : 1
-  );
-  const bg = useTransform(activeBeatValue, (active) =>
-    active === beat ? "#8b8fff" : "rgba(255,255,255,0.15)"
-  );
-
-  return (
-    <motion.div
-      style={{
-        width: 6,
-        height: 6,
-        borderRadius: "50%",
-        backgroundColor: bg,
-        scale,
-      }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-    />
   );
 }
