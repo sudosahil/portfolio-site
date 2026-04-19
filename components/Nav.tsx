@@ -20,7 +20,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-[rgba(14,14,18,0.9)] backdrop-blur-md border-b border-[rgba(255,255,255,0.07)]">
+      <nav className="sticky top-0 z-[100] bg-[rgba(14,14,18,0.9)] backdrop-blur-md border-b border-[rgba(255,255,255,0.07)]">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="font-mono text-[13px] shrink-0">
@@ -74,14 +74,14 @@ export function Nav() {
         {drawerOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-50 bg-[rgba(0,0,0,0.6)]"
+              className="fixed inset-0 z-[100] bg-[rgba(0,0,0,0.6)]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setDrawerOpen(false)}
             />
             <motion.div
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs bg-surface border-l border-[rgba(255,255,255,0.07)] flex flex-col p-8"
+              className="fixed top-0 right-0 bottom-0 z-[100] w-full max-w-xs bg-surface border-l border-[rgba(255,255,255,0.07)] flex flex-col p-8"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}

@@ -16,33 +16,24 @@ export function CopyBeat({ beatNum, activeBeat, position, children }: CopyBeatPr
   const isAdjacent = Math.abs(beatNum - activeBeat) === 1;
 
   if (!isActive && !isAdjacent) return null;
-
-  const alignItems: CSSProperties["alignItems"] =
-    position === "center" ? "center" : position === "left" ? "flex-start" : "flex-end";
-  const textAlign: CSSProperties["textAlign"] =
-    position === "center" ? "center" : position === "left" ? "left" : "right";
-  const paddingLeft = position === "left" ? "10%" : "0";
-  const paddingRight = position === "right" ? "10%" : "0";
+  let positionClasses = "items-center text-center px-6";
+  if (position === "left") {
+    positionClasses = "items-center text-center px-6 md:items-start md:text-left md:pl-[10%] md:pr-0";
+  } else if (position === "right") {
+    positionClasses = "items-center text-center px-6 md:items-end md:text-right md:pr-[10%] md:pl-0";
+  } else {
+    positionClasses = "items-center text-center px-6 md:px-0";
+  }
 
   const translateY = isActive ? 0 : beatNum < activeBeat ? -24 : 24;
 
   return (
     <div
+      className={`absolute inset-0 z-10 pointer-events-none flex flex-col justify-center ${positionClasses}`}
       style={{
         opacity: isActive ? 1 : 0,
         transform: `translateY(${translateY}px)`,
         transition: "opacity 0.6s cubic-bezier(0.25,0.1,0.25,1), transform 0.6s cubic-bezier(0.25,0.1,0.25,1)",
-        position: "absolute",
-        inset: 0,
-        zIndex: 10,
-        pointerEvents: "none",
-        display: "flex",
-        flexDirection: "column",
-        alignItems,
-        justifyContent: "center",
-        paddingLeft,
-        paddingRight,
-        textAlign,
         willChange: "opacity, transform",
         backfaceVisibility: "hidden",
       }}

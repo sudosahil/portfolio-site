@@ -212,12 +212,14 @@ interface FloatProps {
   drift?: number;
   delay?: number;
   duration?: number;
+  className?: string;
   children: React.ReactNode;
 }
 
-function Float({ style, drift = 10, delay = 0, duration = 7, children }: FloatProps) {
+function Float({ style, drift = 10, delay = 0, duration = 7, className, children }: FloatProps) {
   return (
     <motion.div
+      className={className}
       style={{ position: "fixed", pointerEvents: "none", zIndex: 0, ...style }}
       animate={{ y: [0, drift, 0] }}
       transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
@@ -254,19 +256,19 @@ export function PageDecorations() {
       </div>
 
       {/* Browser chrome — top right */}
-      <Float style={{ top: "8%", right: "3%", opacity: 0.18 }} drift={8} delay={0} duration={8}>
+      <Float className="hidden md:block" style={{ top: "8%", right: "3%", opacity: 0.18 }} drift={8} delay={0} duration={8}>
         <BrowserChrome url="sahilundale.in" />
       </Float>
 
       {/* Terminal — bottom right */}
-      <Float style={{ bottom: "12%", right: "3%", opacity: 0.16 }} drift={12} delay={1.5} duration={9}>
+      <Float className="hidden md:block" style={{ bottom: "12%", right: "3%", opacity: 0.16 }} drift={12} delay={1.5} duration={9}>
         <Terminal
           lines={["$ npm run build", "✓ compiled", "✓ generating pages", "✓ ready in 1.8s"]}
         />
       </Float>
 
       {/* Code block — top left */}
-      <Float style={{ top: "14%", left: "2%", opacity: 0.14 }} drift={7} delay={0.8} duration={10}>
+      <Float className="hidden md:block" style={{ top: "14%", left: "2%", opacity: 0.14 }} drift={7} delay={0.8} duration={10}>
         <CodeBlock
           lines={[
             "// hero section",
@@ -279,7 +281,7 @@ export function PageDecorations() {
       </Float>
 
       {/* Code block — mid right, lower */}
-      <Float style={{ top: "52%", right: "2.5%", opacity: 0.12 }} drift={9} delay={2.5} duration={11}>
+      <Float className="hidden md:block" style={{ top: "52%", right: "2.5%", opacity: 0.12 }} drift={9} delay={2.5} duration={11}>
         <CodeBlock
           lines={[
             "const config = {",
@@ -319,12 +321,12 @@ export function PageDecorations() {
       </Float>
 
       {/* Second terminal — mid left, higher */}
-      <Float style={{ top: "62%", left: "1.5%", opacity: 0.12 }} drift={11} delay={4} duration={12}>
+      <Float className="hidden md:block" style={{ top: "62%", left: "1.5%", opacity: 0.12 }} drift={11} delay={4} duration={12}>
         <Terminal lines={["$ git push origin main", "→ deployed to vercel", "✓ live at sahilundale.in"]} />
       </Float>
 
       {/* Mini browser — bottom center */}
-      <Float style={{ bottom: "6%", left: "38%", opacity: 0.1 }} drift={6} delay={1.8} duration={9.5}>
+      <Float className="hidden md:block" style={{ bottom: "6%", left: "38%", opacity: 0.1 }} drift={6} delay={1.8} duration={9.5}>
         <BrowserChrome url="localhost:3000" />
       </Float>
     </div>

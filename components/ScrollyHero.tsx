@@ -101,7 +101,7 @@ export function ScrollyHero() {
               }}
             >
               Your business deserves
-              <br />a better website.
+              <br className="hidden md:block" />a better website.
             </h1>
             <p
               style={{
@@ -153,9 +153,9 @@ export function ScrollyHero() {
               }}
             >
               Your customers Google
-              <br />
+              <br className="hidden md:block" />
               you before they
-              <br />
+              <br className="hidden md:block" />
               call you.
             </h2>
             <p
@@ -166,7 +166,7 @@ export function ScrollyHero() {
               }}
             >
               What they find in those first 3 seconds
-              <br />
+              <br className="hidden md:block" />
               decides whether they stay or leave.
             </p>
           </CopyBeat>
@@ -198,8 +198,8 @@ export function ScrollyHero() {
               }}
             >
               Every day without
-              <br />a proper website
-              <br />is a missed customer.
+              <br className="hidden md:block" />a proper website
+              <br className="hidden md:block" />is a missed customer.
             </h2>
             <p
               style={{
@@ -210,9 +210,9 @@ export function ScrollyHero() {
               }}
             >
               They found your competitor instead.
-              <br />
+              <br className="hidden md:block" />
               Not because they&apos;re better —
-              <br />
+              <br className="hidden md:block" />
               because they showed up first.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -262,7 +262,7 @@ export function ScrollyHero() {
               }}
             >
               A website that works
-              <br />
+              <br className="hidden md:block" />
               as hard as you do.
             </h2>
             <p
@@ -274,7 +274,7 @@ export function ScrollyHero() {
               }}
             >
               Fast. Credible. Built to convert
-              <br />
+              <br className="hidden md:block" />
               visitors into customers.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -324,9 +324,9 @@ export function ScrollyHero() {
               }}
             >
               Let&apos;s build something
-              <br />
+              <br className="hidden md:block" />
               your customers
-              <br />
+              <br className="hidden md:block" />
               actually notice.
             </h2>
             <div
@@ -440,7 +440,7 @@ function ReducedMotionFallback() {
         }}
       >
         Let&apos;s build something
-        <br />
+        <br className="hidden md:block" />
         your customers actually notice.
       </h1>
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
