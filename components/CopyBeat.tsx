@@ -24,14 +24,14 @@ export function CopyBeat({ beatNum, activeBeat, position, children }: CopyBeatPr
   const paddingLeft = position === "left" ? "10%" : "0";
   const paddingRight = position === "right" ? "10%" : "0";
 
-  const translateY = isActive ? 0 : beatNum < activeBeat ? -20 : 20;
+  const translateY = isActive ? 0 : beatNum < activeBeat ? -24 : 24;
 
   return (
     <div
       style={{
         opacity: isActive ? 1 : 0,
         transform: `translateY(${translateY}px)`,
-        transition: "opacity 0.5s ease, transform 0.5s ease",
+        transition: "opacity 0.6s cubic-bezier(0.25,0.1,0.25,1), transform 0.6s cubic-bezier(0.25,0.1,0.25,1)",
         position: "absolute",
         inset: 0,
         zIndex: 10,

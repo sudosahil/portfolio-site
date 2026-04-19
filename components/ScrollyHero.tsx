@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { useScroll, useMotionValueEvent, useReducedMotion, motion } from "framer-motion";
+import { useScroll, useSpring, useMotionValueEvent, useReducedMotion, motion } from "framer-motion";
 import Link from "next/link";
 import { CopyBeat } from "./CopyBeat";
 import { CursorObject } from "./CursorObject";
@@ -22,9 +22,16 @@ export function ScrollyHero() {
   const [activeBeat, setActiveBeat] = useState(1);
   const rafRef = useRef<number>(0);
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: rawProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
+  });
+
+  // Smooth the raw scroll value for fluid beat transitions
+  const scrollYProgress = useSpring(rawProgress, {
+    stiffness: 80,
+    damping: 22,
+    restDelta: 0.001,
   });
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
