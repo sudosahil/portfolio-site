@@ -51,7 +51,7 @@ export function ScrollyHero() {
     <>
       <div
         ref={sectionRef}
-        style={{ height: "1200vh", position: "relative" }}
+        style={{ height: "3000vh", position: "relative" }}
         onWheel={(e) => e.stopPropagation()}
       >
         <div
