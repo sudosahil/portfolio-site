@@ -1,13 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function TerminalBootScreen() {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [text, setText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const [showEnter, setShowEnter] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const fullText = "> hey im sahil, your friendly neighbourhood developer";
 
@@ -49,9 +55,9 @@ export function TerminalBootScreen() {
     };
   }, [isVisible]);
 
-  if (!isVisible) return null;
+  if (!mounted) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isVisible && (
         <motion.div
@@ -63,7 +69,7 @@ export function TerminalBootScreen() {
             filter: "blur(10px)",
             transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
           }}
-          className="fixed inset-0 z-[999] bg-[#000000] flex flex-col items-center justify-center p-6"
+          className="fixed inset-0 z-[9999] bg-[#000000] flex flex-col items-center justify-center p-6"
         >
           <div className="w-full max-w-2xl">
             {/* Terminal Text */}
@@ -97,6 +103,7 @@ export function TerminalBootScreen() {
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
