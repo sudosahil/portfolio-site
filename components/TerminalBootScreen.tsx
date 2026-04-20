@@ -15,7 +15,7 @@ export function TerminalBootScreen() {
     setMounted(true);
   }, []);
 
-  const fullText = "> hey im sahil, your friendly neighbourhood developer";
+  const fullText = "> hey im sahil";
 
   // Typewriter effect
   useEffect(() => {
