@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { Badge } from "@/components/Badge";
-// For CTAs, we'll use simple CSS classes
+
+import { TerminalBootScreen } from "@/components/TerminalBootScreen";
 
 export default function Home() {
   return (
-    <div className="min-h-[calc(100vh-56px)] flex items-center justify-center px-6 relative z-[20]">
+    <>
+      <TerminalBootScreen />
+      <div className="min-h-[calc(100vh-56px)] flex items-center justify-center px-6 relative z-[20]">
       <div className="w-full max-w-2xl animate-fade-in-up">
         {/* ── Avatar + name ────────────────────────────────────────────── */}
         <div className="flex items-center gap-4 mb-8">
@@ -102,5 +104,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }
