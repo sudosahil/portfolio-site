@@ -1,88 +1,127 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { AnimateSection } from "@/components/AnimateSection";
+import { Reveal, RevealLines } from "@/components/Reveal";
+import { LineDivider } from "@/components/LineDivider";
+import { Marquee } from "@/components/Marquee";
 import { SectionLabel } from "@/components/SectionLabel";
-import { ProjectRow } from "@/components/ProjectCard";
-import { ScrollyHero } from "@/components/ScrollyHero";
+import { services } from "@/lib/content";
 
-const projects = [
-  { name: "Personal Portfolio", type: "Web Studio", year: "2025" },
-  { name: "Client E-commerce Store", type: "E-commerce", year: "2025" },
-  { name: "Local Business Site", type: "Business", year: "2024" },
+const process = [
+  {
+    num: "01",
+    title: "Talk",
+    desc: "We figure out what your business actually needs. No jargon, no upsell — just a clear plan.",
+  },
+  {
+    num: "02",
+    title: "Design",
+    desc: "I design something that looks credible and feels fast. You review, we refine, it gets sharp.",
+  },
+  {
+    num: "03",
+    title: "Build",
+    desc: "Hand-coded, performance-obsessed, SEO-ready. Most sites are live within two weeks.",
+  },
+  {
+    num: "04",
+    title: "Launch & care",
+    desc: "We ship it, hook up analytics, and I stick around for updates, hosting, and peace of mind.",
+  },
 ];
 
 export default function WhatIDoPage() {
   return (
     <div>
-      <ScrollyHero />
-
-      {/* ─── Work Preview ─── */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
-        <AnimateSection>
-          <SectionLabel>// selected work</SectionLabel>
-          <h2 className="text-[32px] font-semibold tracking-[-0.02em] text-text-primary mt-1 mb-8">
-            Things I&apos;ve shipped.
-          </h2>
-        </AnimateSection>
-        <AnimateSection delay={0.08}>
-          <div>
-            {projects.map((p, i) => (
-              <ProjectRow
-                key={p.name}
-                index={i + 1}
-                name={p.name}
-                type={p.type}
-                year={p.year}
-                href="/"
-              />
-            ))}
-          </div>
-        </AnimateSection>
-        <AnimateSection delay={0.15}>
-          <div className="mt-8">
-            <Link
-              href="/"
-              className="text-[14px] text-accent hover:text-text-primary transition-colors"
-            >
-              see what I do & view all work →
-            </Link>
-          </div>
-        </AnimateSection>
+      {/* Hero */}
+      <section className="px-5 md:px-8 pt-28 md:pt-36 pb-12">
+        <Reveal>
+          <SectionLabel>What I Do</SectionLabel>
+        </Reveal>
+        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-[0.84] tracking-tighter2">
+          <RevealLines lines={["Websites that", "earn their"]} />
+          <span className="text-red">
+            <RevealLines lines={["keep."]} delay={0.16} />
+          </span>
+        </h1>
+        <Reveal delay={0.15}>
+          <p className="mt-10 text-[20px] md:text-[26px] leading-[1.35] tracking-tight max-w-2xl">
+            I work with brands big and small on a focused range of web services —
+            from a single landing page to a full online store. Whatever it is, it
+            ships fast and looks like you mean business.
+          </p>
+        </Reveal>
       </section>
 
-      {/* ─── Contact CTA Strip ─── */}
-      <section className="bg-surface py-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <AnimateSection className="max-w-lg">
-            <h2 className="font-serif italic text-[28px] md:text-[32px] text-warm leading-[1.3]">
-              Let&apos;s build something your customers actually notice.
-            </h2>
-            <p className="font-mono text-[11px] text-text-secondary mt-3">
-              sahil22undale@gmail.com · mumbai, india
-            </p>
-          </AnimateSection>
-          <AnimateSection delay={0.1} className="flex flex-col gap-3 w-full md:w-auto">
-            <motion.div whileTap={{ scale: 0.97 }}>
-              <Link
-                href="https://wa.me/917559292204"
-                target="_blank"
-                className="flex items-center justify-center px-6 py-3 bg-warm text-bg text-[14px] font-medium rounded-lg w-full md:w-auto"
-              >
-                WhatsApp me →
-              </Link>
-            </motion.div>
-            <motion.div whileTap={{ scale: 0.97 }}>
-              <Link
-                href="mailto:sahil22undale@gmail.com"
-                className="flex items-center justify-center px-6 py-3 border border-[rgba(255,255,255,0.12)] text-text-secondary text-[14px] rounded-lg hover:text-text-primary transition-colors w-full md:w-auto"
-              >
-                send an email
-              </Link>
-            </motion.div>
-          </AnimateSection>
+      {/* Services table */}
+      <section className="px-5 md:px-8 pb-8">
+        <LineDivider />
+        <div>
+          {services.map((s) => (
+            <Reveal key={s.num}>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start py-8 border-b border-line">
+                <span className="font-mono text-[12px] text-grey md:col-span-1">
+                  {s.num}
+                </span>
+                <h3 className="display text-[9vw] md:text-[4vw] leading-[0.95] md:col-span-6">
+                  {s.title}
+                </h3>
+                <p className="text-[16px] leading-[1.65] text-grey-dark md:col-span-5">
+                  {s.desc}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
+      </section>
+
+      {/* Marquee */}
+      <div className="bg-ink text-paper py-4 border-y border-line">
+        <Marquee duration={24}>
+          <span className="display text-[40px] px-6">Fast</span>
+          <span className="text-red text-[28px]">✦</span>
+          <span className="display text-[40px] px-6">Credible</span>
+          <span className="text-red text-[28px]">✦</span>
+          <span className="display text-[40px] px-6">Built to convert</span>
+          <span className="text-red text-[28px]">✦</span>
+        </Marquee>
+      </div>
+
+      {/* Process */}
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <SectionLabel>How it works</SectionLabel>
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-12">
+          Four steps,
+          <br />
+          zero drama.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+          {process.map((p) => (
+            <Reveal key={p.num}>
+              <div className="border-t border-line pt-5">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-mono text-[12px] text-red">{p.num}</span>
+                  <h3 className="text-[26px] md:text-[32px] font-medium tracking-tight">
+                    {p.title}
+                  </h3>
+                </div>
+                <p className="text-[16px] leading-[1.65] text-grey-dark mt-3 max-w-md">
+                  {p.desc}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.1}>
+          <div className="mt-16">
+            <Link
+              href="/contact"
+              data-cursor="let's go"
+              className="inline-flex items-center px-7 py-4 bg-ink text-paper font-mono text-[12px] uppercase tracking-[0.14em] hover:bg-red transition-colors"
+            >
+              Not sure what you need? Let&apos;s figure it out →
+            </Link>
+          </div>
+        </Reveal>
       </section>
     </div>
   );

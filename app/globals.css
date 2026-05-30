@@ -3,18 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --bg: #0e0e12;
-  --surface: #16161c;
-  --surface2: #1c1c24;
-  --accent: #8b8fff;
-  --accent-dim: rgba(139, 143, 255, 0.12);
-  --warm: #ede8df;
-  --warm-dim: rgba(237, 232, 223, 0.08);
-  --warm-border: rgba(237, 232, 223, 0.15);
-  --text-primary: #f2f2f8;
-  --text-secondary: #8888a8;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(255, 255, 255, 0.12);
+  --paper: #f4f2ea;
+  --paper2: #eceadf;
+  --ink: #0d0d0d;
+  --red: #dc3429;
+  --blue: #105df1;
+  --grey: #8d8a80;
+  --line: rgba(13, 13, 13, 0.14);
 }
 
 * {
@@ -24,17 +19,31 @@
   text-rendering: optimizeLegibility;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
-  background: var(--bg);
-  color: var(--text-primary);
-  font-family: var(--font-inter), sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-  background: rgba(139, 143, 255, 0.25);
-  color: #f2f2f8;
+  background: var(--red);
+  color: var(--paper);
+}
+
+/* Hide the native cursor on fine-pointer devices — custom cursor takes over */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none;
+  }
 }
 
 @layer utilities {
@@ -44,5 +53,89 @@ body {
   .font-serif-italic {
     font-family: var(--font-instrument-serif), serif;
     font-style: italic;
+  }
+  /* Büro-style huge display lockup */
+  .display {
+    font-family: var(--font-anton), Impact, sans-serif;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ── Kinetic marquee ─────────────────────────────────────────── */
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.marquee-track {
+  display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  will-change: transform;
+}
+.marquee-track.-left {
+  animation: marquee-left var(--marquee-duration, 26s) linear infinite;
+}
+.marquee-track.-right {
+  animation: marquee-right var(--marquee-duration, 26s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── Text-swap (case study titles) ───────────────────────────── */
+.text-swap {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.text-swap .swap-from,
+.text-swap .swap-to {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.text-swap .swap-to {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(110%);
+  color: var(--red);
+}
+.group:hover .text-swap .swap-from {
+  transform: translateY(-110%);
+}
+.group:hover .text-swap .swap-to {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track.-left,
+  .marquee-track.-right {
+    animation: none;
   }
 }

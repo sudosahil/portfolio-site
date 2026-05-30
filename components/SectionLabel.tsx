@@ -3,14 +3,22 @@ import { ReactNode } from "react";
 interface SectionLabelProps {
   children: ReactNode;
   className?: string;
+  dark?: boolean;
 }
 
-export function SectionLabel({ children, className = "" }: SectionLabelProps) {
+/** Büro-style bracketed mono label, e.g. [ Vision ]. */
+export function SectionLabel({
+  children,
+  className = "",
+  dark = false,
+}: SectionLabelProps) {
   return (
     <p
-      className={`font-mono text-[11px] tracking-[0.12em] text-accent uppercase mb-2.5 ${className}`}
+      className={`font-mono text-[11px] uppercase tracking-[0.2em] ${
+        dark ? "text-paper/40" : "text-grey"
+      } ${className}`}
     >
-      {children}
+      [ {children} ]
     </p>
   );
 }

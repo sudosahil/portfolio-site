@@ -5,7 +5,29 @@
       "Bash(git add *)",
       "Bash(git rm *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "WebFetch(domain:bitcoinos.build)",
+      "WebSearch",
+      "PowerShell(Out-File *)",
+      "Bash(npx next *)",
+      "Bash(echo \"EXIT $?\")",
+      "Bash(npx tsc *)",
+      "Bash(echo \"=== TSC EXIT $? ===\")",
+      "Bash(grep -rn '```' lib app components tailwind.config.ts)",
+      "Bash(echo \"=== EXIT $? \\(1=no matches, good\\) ===\")",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/my-projects)",
+      "Bash(curl -s -o NUL -w \"home=%{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(curl -s -o NUL -w \"projects=%{http_code}\\\\n\" http://localhost:3000/my-projects)",
+      "Bash(curl -s -o NUL -w \"work=%{http_code}\\\\n\" http://localhost:3000/work)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 30; \"home=$\\($r.StatusCode\\)\" } catch { \"home error: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(foreach \\($p in @\\(\"/\",\"/my-projects\",\"/work\",\"/about\",\"/what-i-do\",\"/contact\",\"/resume\"\\)\\) { try { $r = Invoke-WebRequest -Uri \\(\"http://localhost:3000\" + $p\\) -UseBasicParsing -TimeoutSec 60; \"$p = $\\($r.StatusCode\\)\" } catch { \"$p = ERR $\\($_.Exception.Message\\)\" } })",
+      "PowerShell($ok=$false; for\\($i=0;$i -lt 30;$i++\\){ try { $r=Invoke-WebRequest \"http://localhost:3100\" -UseBasicParsing -TimeoutSec 5; \"READY home=$\\($r.StatusCode\\)\"; $ok=$true; break } catch { Start-Sleep -Milliseconds 1500 } }; if\\(-not $ok\\){\"not ready yet\"})",
+      "Bash(echo \"TSCEXIT $?\")",
+      "Bash(echo \"DONE $?\")",
+      "Bash(echo \"TSC $?\")",
+      "Bash(echo \"TSCDONE $?\")"
     ]
   }
 }

@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, DM_Mono, Instrument_Serif } from "next/font/google";
+import { Anton, Archivo, DM_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { PageTransition } from "@/components/PageTransition";
-import { PageDecorations } from "@/components/PageDecorations";
+import { Preloader } from "@/components/Preloader";
+import { CustomCursor } from "@/components/CustomCursor";
 
-const inter = Inter({
+const anton = Anton({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: "400",
+  variable: "--font-anton",
+  display: "swap",
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -30,7 +37,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Sahil Undale — Web Developer · Mumbai",
   description:
-    "I build fast, clean websites for businesses that deserve a better online presence. Based in Mumbai, India.",
+    "Fearless web developer from Mumbai. I build fast, bold websites for businesses that deserve a better online presence.",
 };
 
 export default function RootLayout({
@@ -41,14 +48,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
+      className={`${anton.variable} ${archivo.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="bg-bg text-text-primary font-sans antialiased min-h-screen flex flex-col">
-        <PageDecorations />
+      <body className="bg-paper text-ink font-sans antialiased min-h-screen flex flex-col">
+        <Preloader />
+        <CustomCursor />
         <Nav />
-        <PageTransition>
-          <main className="flex-1">{children}</main>
-        </PageTransition>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

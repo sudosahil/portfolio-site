@@ -3,126 +3,164 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/what-i-do", label: "What I Do" },
   { href: "/my-projects", label: "My Projects" },
+  { href: "/work", label: "Work" },
   { href: "/resume", label: "Resume" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
+const socials = [
+  { href: "https://wa.me/917559292204", label: "WhatsApp" },
+  { href: "https://linkedin.com/in/sahil-undale", label: "LinkedIn" },
+  { href: "mailto:sahil22undale@gmail.com", label: "Email" },
+];
+
 export function Nav() {
   const pathname = usePathname();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [time, setTime] = useState("");
+
+  // Mumbai (IST) clock — Büro shows a live local time in the bar.
+  useEffect(() => {
+    const tick = () =>
+      setTime(
+        new Intl.DateTimeFormat("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+          timeZone: "Asia/Kolkata",
+        }).format(new Date())
+      );
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
-      <nav className="sticky top-0 z-[100] bg-[rgba(14,14,18,0.9)] backdrop-blur-md border-b border-[rgba(255,255,255,0.07)]">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="font-mono text-[13px] shrink-0">
-            <span className="text-text-primary font-medium">sahil undale</span>
+      <header className="fixed top-0 inset-x-0 z-[120] mix-blend-difference">
+        <div className="flex items-center justify-between px-5 md:px-8 h-16">
+          <Link
+            href="/"
+            className="font-display uppercase text-[19px] leading-none tracking-tight text-paper"
+            data-cursor="home"
+          >
+            Sahil Undale<sup className="text-[9px] align-super">©</sup>
           </Link>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-[13px] transition-colors duration-150 ${
-                  pathname === link.href
-                    ? "text-accent"
-                    : "text-text-secondary hover:text-text-primary"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-paper">
+            <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse" />
+            <span>Mumbai</span>
+            <span className="opacity-50 tabular-nums">{time} IST</span>
           </div>
 
-          {/* CTA */}
-          <div className="flex items-center gap-3">
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-              <Link
-                href="/contact"
-                className="hidden md:inline-flex items-center px-4 py-1.5 bg-warm text-bg text-[13px] font-medium rounded-lg"
-              >
-                let&apos;s talk
-              </Link>
-            </motion.div>
-
-            {/* Hamburger */}
-            <button
-              className="md:hidden flex flex-col gap-1.5 p-1"
-              onClick={() => setDrawerOpen(true)}
-              aria-label="Open menu"
-            >
-              <span className="block w-5 h-0.5 bg-text-primary" />
-              <span className="block w-5 h-0.5 bg-text-primary" />
-              <span className="block w-3.5 h-0.5 bg-text-primary" />
-            </button>
-          </div>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="font-mono text-[12px] uppercase tracking-[0.18em] text-paper flex items-center gap-2"
+            aria-label="Toggle menu"
+            data-cursor={open ? "close" : "menu"}
+          >
+            <span>{open ? "Close" : "Menu"}</span>
+            <span className="flex flex-col gap-[3px] w-4">
+              <motion.span
+                className="block h-[1.5px] bg-paper"
+                animate={open ? { rotate: 45, y: 4.5 } : { rotate: 0, y: 0 }}
+              />
+              <motion.span
+                className="block h-[1.5px] bg-paper"
+                animate={open ? { rotate: -45, y: -4.5 } : { rotate: 0, y: 0 }}
+              />
+            </span>
+          </button>
         </div>
-      </nav>
+      </header>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
-        {drawerOpen && (
-          <>
-            <motion.div
-              className="fixed inset-0 z-[100] bg-[rgba(0,0,0,0.6)]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setDrawerOpen(false)}
-            />
-            <motion.div
-              className="fixed top-0 right-0 bottom-0 z-[100] w-full max-w-xs bg-surface border-l border-[rgba(255,255,255,0.07)] flex flex-col p-8"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              <button
-                className="self-end mb-8 text-text-secondary hover:text-text-primary"
-                onClick={() => setDrawerOpen(false)}
-                aria-label="Close menu"
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M5 5L15 15M15 5L5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </button>
-              <div className="flex flex-col gap-6 flex-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setDrawerOpen(false)}
-                    className={`text-[18px] transition-colors ${
-                      pathname === link.href
-                        ? "text-accent"
-                        : "text-text-secondary hover:text-text-primary"
-                    }`}
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-[110] bg-ink text-paper overflow-y-auto overscroll-contain"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+          >
+            <nav className="min-h-full flex flex-col justify-center max-w-6xl w-full mx-auto px-5 md:px-8 pt-24 pb-12">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40 mb-6">
+                [ Index ]
+              </p>
+              <ul className="border-t border-line-light">
+                {navLinks.map((link, i) => {
+                  const activeLink = pathname === link.href;
+                  return (
+                    <li key={link.href} className="border-b border-line-light">
+                      <Link
+                        href={link.href}
+                        className="group flex items-baseline gap-4 md:gap-8 py-3 md:py-4"
+                        data-cursor="go"
+                      >
+                        <motion.span
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.25 + i * 0.05 }}
+                          className="font-mono text-[12px] text-paper/40 w-8 shrink-0"
+                        >
+                          0{i + 1}
+                        </motion.span>
+                        <motion.span
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            delay: 0.25 + i * 0.05,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className={`display text-[10vw] md:text-[6vw] leading-[0.95] transition-colors duration-200 ${
+                            activeLink
+                              ? "text-red"
+                              : "text-paper group-hover:text-red"
+                          }`}
+                        >
+                          {link.label}
+                        </motion.span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[12px] uppercase tracking-[0.12em] text-paper/60 hover:text-red transition-colors"
+                    data-cursor="open"
                   >
-                    {link.label}
-                  </Link>
+                    ↗ {s.label}
+                  </a>
                 ))}
               </div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  href="/contact"
-                  onClick={() => setDrawerOpen(false)}
-                  className="block w-full text-center px-4 py-3 bg-warm text-bg text-[15px] font-medium rounded-lg"
-                >
-                  let&apos;s talk
-                </Link>
-              </motion.div>
-            </motion.div>
-          </>
+            </nav>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

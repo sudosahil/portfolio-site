@@ -1,5 +1,3 @@
-import { Tag } from "./Tag";
-
 const skillGroups = [
   {
     label: "development",
@@ -17,7 +15,7 @@ const skillGroups = [
   {
     label: "operations & marketing",
     skills: [
-      "E-commerce Platform Operations",
+      "E-commerce Operations",
       "Event Coordination",
       "Performance Marketing",
     ],
@@ -35,19 +33,22 @@ const skillGroups = [
 
 export function Skills() {
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
       {skillGroups.map((group) => (
-        <div key={group.label}>
-          <p className="font-mono text-[10px] tracking-[0.12em] text-text-secondary uppercase mb-3">
+        <div key={group.label} className="border-t border-line pt-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-grey mb-3">
             {group.label}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <ul className="space-y-1.5">
             {group.skills.map((skill) => (
-              <Tag key={skill} variant="muted">
+              <li
+                key={skill}
+                className="text-[18px] md:text-[20px] font-medium tracking-tight"
+              >
                 {skill}
-              </Tag>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       ))}
     </div>

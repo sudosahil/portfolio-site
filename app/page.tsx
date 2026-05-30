@@ -1,109 +1,142 @@
 import Link from "next/link";
-
-import { TerminalBootScreen } from "@/components/TerminalBootScreen";
+import { Reveal, RevealLines } from "@/components/Reveal";
+import { Marquee } from "@/components/Marquee";
+import { LineDivider } from "@/components/LineDivider";
+import { Stat } from "@/components/Stat";
+import { SectionLabel } from "@/components/SectionLabel";
+import { CaseCard } from "@/components/CaseCard";
+import { caseProjects, services, stats, skills } from "@/lib/content";
 
 export default function Home() {
   return (
-    <>
-      <TerminalBootScreen />
-      <div className="min-h-[calc(100vh-56px)] flex items-center justify-center px-6 relative z-[20]">
-      <div className="w-full max-w-2xl animate-fade-in-up">
-        {/* ── Avatar + name ────────────────────────────────────────────── */}
-        <div className="flex items-center gap-4 mb-8">
-          <div
-            className="w-14 h-14 rounded-full flex items-center justify-center shrink-0"
-            style={{
-              background: "rgba(139,143,255,0.1)",
-              border: "1px solid rgba(139,143,255,0.22)",
-            }}
-          >
-            <span className="font-mono text-[15px] font-medium text-accent">
-              SU
-            </span>
-          </div>
-          <div>
-            <p className="font-mono text-[11px] tracking-[0.12em] text-text-secondary uppercase mb-1">
-              web developer · mumbai, india
+    <div>
+      {/* ─────────────────────────── HERO ─────────────────────────── */}
+      <section className="px-5 md:px-8 pt-28 md:pt-36 pb-10">
+        <Reveal>
+          <SectionLabel>Web Developer — Mumbai, India</SectionLabel>
+        </Reveal>
+
+        <h1 className="display mt-5 text-[15.5vw] md:text-[12vw] leading-[0.84] tracking-tighter2">
+          <RevealLines lines={["I build", "websites that"]} />
+          <span className="text-red">
+            <RevealLines lines={["actually work."]} delay={0.18} />
+          </span>
+        </h1>
+
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-12 gap-6">
+          <Reveal delay={0.15} className="md:col-span-7 md:col-start-6">
+            <p className="text-[20px] md:text-[26px] leading-[1.35] tracking-tight max-w-2xl">
+              I&apos;m Sahil — a fearless{" "}
+              <span className="font-serif-italic text-red">🤟 web developer</span>{" "}
+              from Mumbai crafting fast, bold websites for businesses that
+              deserve to be seen, found, and remembered.
             </p>
-            <h1 className="text-[28px] md:text-[32px] font-semibold tracking-[-0.03em] text-text-primary leading-none">
-              Sahil Undale
-            </h1>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                data-cursor="let's go"
+                className="inline-flex items-center px-6 py-3 bg-ink text-paper font-mono text-[12px] uppercase tracking-[0.14em] hover:bg-red transition-colors"
+              >
+                Start a project →
+              </Link>
+              <Link
+                href="/my-projects"
+                data-cursor="view"
+                className="inline-flex items-center px-6 py-3 border border-line font-mono text-[12px] uppercase tracking-[0.14em] hover:border-ink transition-colors"
+              >
+                See the work
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────────────────────── SKILLS MARQUEE ─────────────────────── */}
+      <div className="border-y border-line py-4 bg-ink text-paper">
+        <Marquee duration={30}>
+          {skills.map((s) => (
+            <span key={s} className="flex items-center">
+              <span className="display text-[34px] md:text-[44px] px-6">{s}</span>
+              <span className="text-red text-[24px]">✦</span>
+            </span>
+          ))}
+        </Marquee>
+      </div>
+
+      {/* ───────────────────────── SELECTED WORK ──────────────────────── */}
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <div className="flex items-end justify-between gap-6 mb-10">
+          <div>
+            <SectionLabel>Selected Work</SectionLabel>
+            <h2 className="display text-[10vw] md:text-[6vw] leading-[0.9] mt-3">
+              Things I&apos;ve
+              <br />
+              shipped.
+            </h2>
           </div>
-        </div>
-
-        {/* ── Statement ────────────────────────────────────────────────── */}
-        <div>
-          <h2 className="text-[40px] md:text-[58px] lg:text-[68px] font-semibold tracking-[-0.04em] text-text-primary leading-[1.05] mb-8">
-            I build websites
-            <br className="hidden md:block" />
-            <em
-              className="not-italic font-normal"
-              style={{ color: "#8888a8", fontFamily: "var(--font-instrument-serif), serif", fontStyle: "italic" }}
-            >
-              {" "}businesses actually
-            </em>
-            <br className="hidden md:block" />
-            {" "}need.
-          </h2>
-        </div>
-
-        {/* ── Status badges ────────────────────────────────────────────── */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          <span
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-[11px]"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "#8888a8" }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "rgba(39,201,63,0.8)" }} />
-            Available for projects
-          </span>
-          <span
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-[11px]"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "#8888a8" }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "rgba(139,143,255,0.8)" }} />
-            Director · TheoremLabs India
-          </span>
-          <span
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-mono text-[11px]"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "#8888a8" }}
-          >
-            Mumbai, India
-          </span>
-        </div>
-
-        {/* ── CTAs ─────────────────────────────────────────────────────── */}
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href="/what-i-do"
-            className="inline-flex items-center px-6 py-3 text-[14px] font-medium rounded-lg hover:scale-[1.02] active:scale-[0.97] transition-transform"
-            style={{ background: "#ede8df", color: "#0e0e12" }}
-          >
-            What I do →
-          </Link>
           <Link
             href="/my-projects"
-            className="inline-flex items-center px-6 py-3 text-[14px] rounded-lg transition-all hover:text-text-primary hover:border-[rgba(237,232,223,0.25)] hover:scale-[1.02] active:scale-[0.97]"
-            style={{ border: "1px solid rgba(237,232,223,0.12)", color: "#8888a8" }}
+            data-cursor="all"
+            className="hidden md:inline-flex shrink-0 font-mono text-[12px] uppercase tracking-[0.14em] border border-line px-5 py-3 hover:border-ink transition-colors"
           >
-            My projects
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center px-6 py-3 text-[14px] rounded-lg transition-all hover:text-text-primary hover:border-[rgba(237,232,223,0.25)] hover:scale-[1.02] active:scale-[0.97]"
-            style={{ border: "1px solid rgba(237,232,223,0.12)", color: "#8888a8" }}
-          >
-            Get in touch
+            View all ↗
           </Link>
         </div>
 
-        {/* ── Footer note ──────────────────────────────────────────────── */}
-        <div className="mt-12 opacity-60">
-          <p className="font-mono text-[11px] text-text-secondary">
-            sahil22undale@gmail.com · sahilundale.in
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+          {caseProjects.map((p, i) => (
+            <CaseCard key={p.name} project={p} index={i} />
+          ))}
         </div>
-      </div>
+      </section>
+
+      {/* ─────────────────────────── STATS ────────────────────────────── */}
+      <section className="bg-ink text-paper px-5 md:px-8 py-16 md:py-24">
+        <SectionLabel dark>By the numbers</SectionLabel>
+        <LineDivider dark className="mt-6 mb-12" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+          {stats.map((s) => (
+            <Stat key={s.label} value={s.value} suffix={s.suffix} label={s.label} />
+          ))}
+        </div>
+        <p className="mt-14 max-w-3xl text-[22px] md:text-[32px] leading-[1.3] tracking-tight">
+          Most local businesses are invisible online — not because they
+          aren&apos;t good, but because their website doesn&apos;t show it.{" "}
+          <span className="text-red">Let&apos;s fix that.</span>
+        </p>
+      </section>
+
+      {/* ─────────────────────────── SERVICES ─────────────────────────── */}
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <SectionLabel>What I Do</SectionLabel>
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+          Built for business.
+        </h2>
+        <div className="border-t border-line">
+          {services.map((s) => (
+            <Reveal key={s.num}>
+              <Link
+                href="/what-i-do"
+                data-cursor="more"
+                className="group grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-start py-7 border-b border-line"
+              >
+                <span className="font-mono text-[12px] text-grey md:col-span-1">
+                  {s.num}
+                </span>
+                <h3 className="text-[28px] md:text-[40px] font-medium tracking-tight leading-[1] md:col-span-5 group-hover:text-red transition-colors">
+                  {s.title}
+                </h3>
+                <p className="text-[15px] leading-[1.6] text-grey-dark md:col-span-5 md:col-start-7 max-w-md">
+                  {s.desc}
+                </p>
+                <span className="hidden md:block md:col-span-1 text-right text-[20px] group-hover:text-red transition-colors">
+                  ↗
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </div>
-    </>
   );
 }

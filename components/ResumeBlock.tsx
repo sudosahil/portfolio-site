@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 interface ResumeBlockProps {
   role: string;
   company: string;
@@ -11,31 +7,27 @@ interface ResumeBlockProps {
 
 export function ResumeBlock({ role, company, dateRange, bullets }: ResumeBlockProps) {
   return (
-    <motion.div
-      className="rounded-xl border border-[rgba(255,255,255,0.07)] p-6 bg-surface relative overflow-hidden transition-colors duration-200"
-      style={{ borderLeft: "2px solid #8b8fff" }}
-      whileHover={{ borderColor: "rgba(255,255,255,0.12)" }}
-    >
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div>
-          <h3 className="text-[15px] font-medium text-text-primary">{role}</h3>
-          <p className="font-mono text-[12px] text-accent mt-0.5">{company}</p>
-        </div>
-        <span className="font-mono text-[11px] text-text-secondary whitespace-nowrap">
-          {dateRange}
-        </span>
+    <article className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-8 border-b border-line">
+      <div className="md:col-span-4">
+        <h3 className="text-[24px] md:text-[28px] font-medium tracking-tight leading-[1.05]">
+          {role}
+        </h3>
+        <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-red mt-2">
+          {company}
+        </p>
+        <p className="font-mono text-[12px] text-grey mt-1">{dateRange}</p>
       </div>
-      <ul className="space-y-1.5">
-        {bullets.map((bullet, i) => (
+      <ul className="md:col-span-7 md:col-start-6 space-y-2">
+        {bullets.map((b, i) => (
           <li
             key={i}
-            className="text-[14px] text-text-secondary leading-[1.8] flex gap-2"
+            className="text-[16px] leading-[1.6] text-grey-dark flex gap-3"
           >
-            <span className="text-accent mt-1 shrink-0">·</span>
-            {bullet}
+            <span className="text-red shrink-0">↳</span>
+            {b}
           </li>
         ))}
       </ul>
-    </motion.div>
+    </article>
   );
 }
