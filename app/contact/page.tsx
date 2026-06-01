@@ -41,7 +41,7 @@ export default function ContactPage() {
         <Reveal delay={0.15}>
           <p className="mt-8 text-[18px] md:text-[22px] leading-[1.4] tracking-tight max-w-xl text-grey-dark">
             Available for web projects, freelance work, and collabs. Based in
-            Mumbai — usually replies within 24 hours.
+            Mumbai &amp; Pune — usually replies within 24 hours.
           </p>
         </Reveal>
       </section>

@@ -35,9 +35,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Sahil Undale — Web Developer · Mumbai",
+  title: "Sahil Undale — Web Developer · Mumbai & Pune",
   description:
-    "Fearless web developer from Mumbai. I build fast, bold websites for businesses that deserve a better online presence.",
+    "Fearless web developer from Mumbai & Pune. I build fast, bold websites for businesses that deserve a better online presence.",
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Reveal, RevealLines } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { LineDivider } from "@/components/LineDivider";
@@ -13,7 +13,7 @@ export default function Home() {
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section className="px-5 md:px-8 pt-28 md:pt-36 pb-10">
         <Reveal>
-          <SectionLabel>Web Developer — Mumbai, India</SectionLabel>
+          <SectionLabel>Web Developer — Mumbai &amp; Pune, India</SectionLabel>
         </Reveal>
 
         <h1 className="display mt-5 text-[15.5vw] md:text-[12vw] leading-[0.84] tracking-tighter2">
@@ -28,7 +28,8 @@ export default function Home() {
             <p className="text-[20px] md:text-[26px] leading-[1.35] tracking-tight max-w-2xl">
               I&apos;m Sahil — a fearless{" "}
               <span className="font-serif-italic text-red">🤟 web developer</span>{" "}
-              from Mumbai crafting fast, bold websites for businesses that
+              from Mumbai &amp; Pune crafting fast, bold websites for businesses
+              that
               deserve to be seen, found, and remembered.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -104,6 +105,32 @@ export default function Home() {
           aren&apos;t good, but because their website doesn&apos;t show it.{" "}
           <span className="text-red">Let&apos;s fix that.</span>
         </p>
+      </section>
+
+      {/* ─────────────────────────── ABOUT ────────────────────────────── */}
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <SectionLabel>Who&apos;s building this</SectionLabel>
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6">
+          <Reveal delay={0.1} className="md:col-span-7 md:col-start-6">
+            <p className="text-[22px] md:text-[30px] leading-[1.35] tracking-tight">
+              I&apos;m Sahil Undale — a web developer based in Mumbai &amp; Pune,
+              working with local businesses that want a serious online presence.
+            </p>
+            <p className="mt-6 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
+              I started because I kept seeing good businesses lose customers to
+              competitors with better-looking websites. That felt like a
+              solvable problem. So I started solving it.
+            </p>
+            <p className="mt-5 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
+              I work directly with every client — no middlemen, no account
+              managers. You get fast communication, honest timelines, and a site
+              that&apos;s built to do a job.
+            </p>
+            <p className="mt-5 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
+              Based in Mumbai &amp; Pune. Building for businesses across India.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       {/* ─────────────────────────── SERVICES ─────────────────────────── */}

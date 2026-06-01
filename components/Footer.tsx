@@ -35,7 +35,7 @@ export function Footer() {
       <div className="border-y border-line-light py-3">
         <Marquee duration={22}>
           <span className="display text-[28px] px-6 text-paper/80">
-            Mumbai, India
+            Mumbai &amp; Pune
           </span>
           <span className="display text-[28px] px-6 text-red">✺</span>
         </Marquee>

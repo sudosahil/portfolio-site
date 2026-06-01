@@ -68,7 +68,7 @@ export function Nav() {
 
           <div className="hidden md:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-paper">
             <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse" />
-            <span>Mumbai</span>
+            <span>Mumbai &amp; Pune</span>
             <span className="opacity-50 tabular-nums">{time} IST</span>
           </div>
 

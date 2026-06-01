@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Reveal, RevealLines } from "@/components/Reveal";
 import { LineDivider } from "@/components/LineDivider";
 import { Marquee } from "@/components/Marquee";
@@ -64,9 +64,28 @@ export default function WhatIDoPage() {
                 <h3 className="display text-[9vw] md:text-[4vw] leading-[0.95] md:col-span-6">
                   {s.title}
                 </h3>
-                <p className="text-[16px] leading-[1.65] text-grey-dark md:col-span-5">
-                  {s.desc}
-                </p>
+                <div className="md:col-span-5">
+                  <p className="text-[16px] leading-[1.65] text-grey-dark">
+                    {s.detail}
+                  </p>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-grey mt-6 mb-3">
+                    Includes
+                  </p>
+                  <ul className="space-y-2">
+                    {s.includes.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 text-[15px] leading-[1.5] text-grey-dark"
+                      >
+                        <span className="text-red">↳</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-[18px] md:text-[20px] font-medium tracking-tight mt-6">
+                    {s.price}
+                  </p>
+                </div>
               </div>
             </Reveal>
           ))}

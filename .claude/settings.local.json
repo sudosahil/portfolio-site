@@ -27,7 +27,10 @@
       "Bash(echo \"TSCEXIT $?\")",
       "Bash(echo \"DONE $?\")",
       "Bash(echo \"TSC $?\")",
-      "Bash(echo \"TSCDONE $?\")"
+      "Bash(echo \"TSCDONE $?\")",
+      "Bash(git commit -m 'Redesign portfolio with Büro-inspired UI and mobile optimization *)",
+      "PowerShell(try { $r=Invoke-WebRequest \"http://localhost:3100\" -UseBasicParsing -TimeoutSec 30; if \\($r.Content -match \"Mumbai &\\(amp;\\)? Pune\"\\) { \"OK — 'Mumbai & Pune' is live on the page\" } else { \"served 200 but 'Pune' NOT found in HTML\" } } catch { \"DOWN $\\($_.Exception.Message\\)\" })",
+      "Bash(git commit *)"
     ]
   }
 }

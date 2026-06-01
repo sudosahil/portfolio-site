@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+﻿/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -20,8 +20,8 @@ function screenshotUrl(siteUrl: string) {
 }
 
 /**
- * Büro-style case-study card: a media thumbnail with a title that swaps
- * to its tagline on hover (text-swap), plus subtitle + industry meta.
+ * Büro-style case-study card: a media thumbnail with the project title,
+ * plus category + industry meta.
  */
 export function CaseCard({
   project,
@@ -66,9 +66,8 @@ export function CaseCard({
       </div>
 
       <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        <span className="text-swap text-[20px] md:text-[26px] font-medium tracking-tight leading-tight whitespace-nowrap">
-          <span className="swap-from block">{project.name}</span>
-          <span className="swap-to">↳ {project.tagline}</span>
+        <span className="text-[20px] md:text-[26px] font-medium tracking-tight leading-tight whitespace-nowrap">
+          {project.name}
         </span>
         <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-grey shrink-0">
           {project.category}

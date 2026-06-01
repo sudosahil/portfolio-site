@@ -1,4 +1,4 @@
-import type { CaseProject } from "@/components/CaseCard";
+﻿import type { CaseProject } from "@/components/CaseCard";
 
 export const caseProjects: CaseProject[] = [
   {
@@ -40,28 +40,68 @@ export const services = [
     num: "01",
     title: "Business Websites",
     desc: "Clean, fast sites that make your business look legit from the first second — built to rank on Google and turn visitors into customers.",
+    detail:
+      "Clean, fast sites that make your business look legit from the first second — built to rank on Google and turn visitors into customers.",
+    includes: [
+      "Up to 5 pages (Home, About, Services, Gallery, Contact)",
+      "Mobile-first design",
+      "On-page SEO setup",
+      "Contact form with WhatsApp integration",
+      "Google Maps embed",
+      "Delivered in 2 weeks",
+    ],
+    price: "Starting from ₹15,000",
   },
   {
     num: "02",
     title: "Landing Pages",
     desc: "One page, one goal. For ad campaigns, launches, and lead capture — engineered to convert.",
+    detail:
+      "One page, one goal. For ad campaigns, product launches, and lead capture — built to load fast and convert visitors into enquiries.",
+    includes: [
+      "Single-page design optimised for conversions",
+      "Headline, benefits, CTA, and lead form",
+      "Connected to WhatsApp or email",
+      "90+ Lighthouse score",
+      "Delivered in 5–7 days",
+    ],
+    price: "Starting from ₹8,000",
   },
   {
     num: "03",
     title: "E-commerce Stores",
     desc: "Ready-to-sell stores with product pages, cart, and payment integration. Your business online, properly.",
+    detail:
+      "Ready-to-sell stores with product pages, cart, and payment integration. Your catalogue online, properly.",
+    includes: [
+      "Product listing pages",
+      "Cart and checkout flow",
+      "Razorpay / Stripe payment integration",
+      "Order confirmation emails",
+      "Mobile-optimised throughout",
+    ],
+    price: "Starting from ₹25,000",
   },
   {
     num: "04",
     title: "Care & Hosting",
     desc: "Monthly hosting, updates, and peace of mind. Your site stays live, fast, and yours.",
+    detail:
+      "Monthly hosting, updates, and peace of mind. Your site stays live, fast, and maintained — without you having to think about it.",
+    includes: [
+      "Managed hosting on fast servers",
+      "Monthly content updates (text, images, pricing)",
+      "Security monitoring",
+      "Priority support via WhatsApp",
+    ],
+    price: "₹1,500 / month",
   },
 ];
 
 export const stats = [
   { value: 5, suffix: "", label: "Projects shipped" },
   { value: 2, suffix: " wk", label: "Avg. build time" },
-  { value: 100, suffix: "", label: "Lighthouse score" },
+  { value: 95, suffix: "", label: "Lighthouse score" },
 ];
 
 export const skills = [

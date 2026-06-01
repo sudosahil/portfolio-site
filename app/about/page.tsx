@@ -6,7 +6,7 @@ import { Education } from "@/components/Education";
 import { skills } from "@/lib/content";
 
 const currently = [
-  { label: "Location", value: "Mumbai, India" },
+  { label: "Location", value: "Mumbai & Pune, India" },
   { label: "Role", value: "Director · TheoremLabs India" },
   { label: "Status", value: "Available for projects" },
 ];
@@ -25,7 +25,8 @@ export default function AboutPage() {
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-6">
           <Reveal delay={0.15} className="md:col-span-7 md:col-start-6">
             <p className="text-[20px] md:text-[26px] leading-[1.4] tracking-tight">
-              A web developer from Mumbai. I build websites for businesses that
+              A web developer from Mumbai &amp; Pune. I build websites for
+              businesses that
               want to look credible and grow online — and I genuinely care about
               the people behind them. Outside of code I&apos;m running events,
               poking at AI tools, and chasing the next thing to build.{" "}

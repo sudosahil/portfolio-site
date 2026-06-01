@@ -1,4 +1,4 @@
-import { Reveal, RevealLines } from "@/components/Reveal";
+﻿import { Reveal, RevealLines } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { CaseCard } from "@/components/CaseCard";
 import { HookForm } from "@/components/HookForm";
@@ -30,8 +30,7 @@ export default function MyProjectsPage() {
         </h1>
         <Reveal delay={0.15}>
           <p className="mt-8 text-[18px] md:text-[22px] leading-[1.4] tracking-tight max-w-xl text-grey-dark">
-            Live work, real businesses. Hover any project to see its tagline —
-            click to open the site.
+            Live work, real businesses. Click any project to open the site.
           </p>
         </Reveal>
       </section>
@@ -57,7 +56,7 @@ export default function MyProjectsPage() {
             </h2>
             <ul className="mt-8 space-y-3">
               {[
-                "Based in Mumbai, building for Indian businesses",
+                "Based in Mumbai & Pune, building for Indian businesses",
                 "Fast turnaround — most sites done in 2 weeks",
                 "You talk to me directly. Not an account manager.",
               ].map((t) => (
