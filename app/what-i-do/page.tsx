@@ -28,6 +28,29 @@ const process = [
   },
 ];
 
+const expectations = [
+  {
+    num: "01",
+    title: "On time.",
+    desc: "I give you a realistic timeline before we start and I stick to it. Most sites are live within two weeks of receiving your content.",
+  },
+  {
+    num: "02",
+    title: "Direct communication.",
+    desc: "You message me, I reply. No support tickets, no account managers, no chasing. Just a straightforward working relationship.",
+  },
+  {
+    num: "03",
+    title: "Built to last.",
+    desc: "Clean code, proper hosting, and a site you can actually update. Not locked into a drag-and-drop builder you'll outgrow in a year.",
+  },
+  {
+    num: "04",
+    title: "Honest pricing.",
+    desc: "You get a clear quote upfront. No surprise charges, no scope creep billed separately. What we agree on is what you pay.",
+  },
+];
+
 export default function WhatIDoPage() {
   return (
     <div>
@@ -104,6 +127,30 @@ export default function WhatIDoPage() {
         </Marquee>
       </div>
 
+      {/* Why it matters */}
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <SectionLabel>Why it matters</SectionLabel>
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+          Most business websites
+          <br />
+          are doing nothing.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <Reveal delay={0.1} className="md:col-span-7 md:col-start-6">
+            <p className="text-[18px] md:text-[22px] leading-[1.4] tracking-tight">
+              A website that loads slowly, looks outdated, or doesn&apos;t show
+              up on Google is worse than having no website at all. It tells your
+              customer to look elsewhere.
+            </p>
+            <p className="mt-6 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
+              Every site I build is fast by default, built mobile-first, and set
+              up so Google can actually find it. Not as an afterthought — as the
+              starting point.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Process */}
       <section className="px-5 md:px-8 py-16 md:py-24">
         <SectionLabel>How it works</SectionLabel>
@@ -124,6 +171,28 @@ export default function WhatIDoPage() {
                 </div>
                 <p className="text-[16px] leading-[1.65] text-grey-dark mt-3 max-w-md">
                   {p.desc}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* What you can expect */}
+      <section className="px-5 md:px-8 py-16 md:py-24">
+        <SectionLabel>What you can expect</SectionLabel>
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+          {expectations.map((e) => (
+            <Reveal key={e.num}>
+              <div className="border-t border-line pt-5">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-mono text-[12px] text-red">{e.num}</span>
+                  <h3 className="text-[26px] md:text-[32px] font-medium tracking-tight">
+                    {e.title}
+                  </h3>
+                </div>
+                <p className="text-[16px] leading-[1.65] text-grey-dark mt-3 max-w-md">
+                  {e.desc}
                 </p>
               </div>
             </Reveal>

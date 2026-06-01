@@ -1,4 +1,4 @@
-import { Reveal, RevealLines } from "@/components/Reveal";
+﻿import { Reveal, RevealLines } from "@/components/Reveal";
 import { LineDivider } from "@/components/LineDivider";
 import { SectionLabel } from "@/components/SectionLabel";
 import { ContactForm } from "@/components/ContactForm";
@@ -24,6 +24,25 @@ const channels = [
   },
 ];
 
+const notes = [
+  {
+    num: "01",
+    text: "I work with small and medium businesses across Mumbai and Pune — restaurants, service providers, clinics, schools, studios, and startups. If that sounds like you, we will get along fine.",
+  },
+  {
+    num: "02",
+    text: "Most projects are completed within two weeks of receiving all content from the client. The faster you send me what I need, the faster your site goes live.",
+  },
+  {
+    num: "03",
+    text: "Pricing starts at Rs. 15,000 for a business website and Rs. 8,000 for a landing page. If your budget is lower, tell me — I would rather have an honest conversation than waste both our time.",
+  },
+  {
+    num: "04",
+    text: "I do not take on projects I cannot deliver well. If something is outside my scope, I will tell you upfront.",
+  },
+];
+
 export default function ContactPage() {
   return (
     <div className="px-5 md:px-8 pb-16 md:pb-24">
@@ -40,8 +59,9 @@ export default function ContactPage() {
         </h1>
         <Reveal delay={0.15}>
           <p className="mt-8 text-[18px] md:text-[22px] leading-[1.4] tracking-tight max-w-xl text-grey-dark">
-            Available for web projects, freelance work, and collabs. Based in
-            Mumbai &amp; Pune — usually replies within 24 hours.
+            Available for web projects, freelance work, and long-term retainers.
+            Based in Mumbai &amp; Pune — usually replies within a few hours on
+            WhatsApp.
           </p>
         </Reveal>
       </section>
@@ -70,6 +90,28 @@ export default function ContactPage() {
             </a>
           </Reveal>
         ))}
+      </section>
+
+      {/* Before you write */}
+      <section className="mb-16">
+        <SectionLabel>Before you write</SectionLabel>
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+          A few things worth
+          <br />
+          knowing first.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+          {notes.map((n) => (
+            <Reveal key={n.num}>
+              <div className="border-t border-line pt-5">
+                <span className="font-mono text-[12px] text-red">{n.num}</span>
+                <p className="text-[16px] leading-[1.65] text-grey-dark mt-3 max-w-md">
+                  {n.text}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       {/* Form */}
