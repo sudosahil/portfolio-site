@@ -1,5 +1,4 @@
-﻿import Link from "next/link";
-import { Reveal, RevealLines } from "@/components/Reveal";
+﻿import { Reveal, RevealLines } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { CaseCard } from "@/components/CaseCard";
 import { caseProjects } from "@/lib/content";
