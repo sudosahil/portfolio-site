@@ -4,7 +4,7 @@ import { Marquee } from "@/components/Marquee";
 import { LineDivider } from "@/components/LineDivider";
 import { Stat } from "@/components/Stat";
 import { SectionLabel } from "@/components/SectionLabel";
-import { CaseCard } from "@/components/CaseCard";
+import { CaseCarousel } from "@/components/CaseCarousel";
 import { caseProjects, services, stats, skills } from "@/lib/content";
 
 export default function Home() {
@@ -26,11 +26,10 @@ export default function Home() {
         <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-12 gap-6">
           <Reveal delay={0.15} className="md:col-span-7 md:col-start-6">
             <p className="text-[20px] md:text-[26px] leading-[1.35] tracking-tight max-w-2xl">
-              I&apos;m Sahil — a{" "}
+              I&apos;m Sahil, a{" "}
               <span className="font-serif-italic text-red">🤟 web developer</span>{" "}
-              based in Mumbai &amp; Pune. I build clean, fast websites for local
-              businesses that want a proper online presence and more customers
-              through the door.
+              based in Mumbai &amp; Pune. I build websites for small businesses —
+              clean, fast, and built to bring in customers.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
@@ -84,11 +83,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-          {caseProjects.map((p, i) => (
-            <CaseCard key={p.name} project={p} index={i} />
-          ))}
-        </div>
+        <CaseCarousel projects={caseProjects} />
       </section>
 
       {/* ─────────────────────────── STATS ────────────────────────────── */}
@@ -113,25 +108,24 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6">
           <Reveal delay={0.1} className="md:col-span-7 md:col-start-6">
             <p className="text-[22px] md:text-[30px] leading-[1.35] tracking-tight">
-              I&apos;m Sahil Undale, a web developer based in Mumbai &amp; Pune
-              with a focus on building websites for small and medium businesses.
+              Sahil Undale. Web developer, Mumbai &amp; Pune.
             </p>
             <p className="mt-6 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
-              Most of my clients are business owners who know they need a website
-              but do not know where to start — or who had one built before and
-              were disappointed with the result. I work with them directly, from
-              the first conversation to launch, to make sure that does not happen
-              again.
+              I got into this because I kept noticing the same problem — good,
+              hardworking businesses with no real presence online. Customers were
+              searching for them and not finding them, or landing on a site that
+              did not reflect the quality of their work at all.
             </p>
             <p className="mt-5 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
-              My work is practical. Every site I build is fast, mobile-ready, and
-              set up correctly for search engines from day one. No unnecessary
-              complexity, no bloated page builders, no handing you off to someone
-              else mid-project.
+              I started building websites to fix that. I am relatively new to this
+              professionally, but I take every project seriously. I work on my
+              own, handle everything from design to deployment, and stay involved
+              until the site is live and working the way it should.
             </p>
             <p className="mt-5 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-xl">
-              If you run a business in Mumbai or Pune and need a website that
-              actually works for you — get in touch.
+              I do not take on more than I can deliver. If you are a small
+              business owner in Mumbai or Pune who needs a website done properly —
+              I am straightforward to work with and easy to reach.
             </p>
           </Reveal>
         </div>
