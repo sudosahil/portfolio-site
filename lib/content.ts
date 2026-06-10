@@ -15,7 +15,7 @@ export const caseProjects: CaseProject[] = [
     name: "Bombay Gaming Co.",
     tagline: "Book. Play. Repeat.",
     description:
-      "An app-style booking experience for a Mumbai gaming lounge — browse the setups, pick a slot, and reserve a station in a few taps. Fast, animated, and built to feel like a product rather than a brochure.",
+      "A full-stack booking platform for a gaming café in Ghatkopar, Mumbai — players pick a station and time slot and pay online through Razorpay to lock in a confirmed booking. A React front end backed by a Node/Express API.",
     liveUrl: "https://bombaygamingcompany.vercel.app/",
     category: "Web App",
     industry: "Entertainment",
@@ -43,11 +43,11 @@ export const caseProjects: CaseProject[] = [
   },
   {
     name: "Siddhi Coaching Classes",
-    tagline: "Learn. Grow. Succeed.",
+    tagline: "Success begins here.",
     description:
-      "A clean, mobile-first site for a coaching institute — it lays out the courses and batches on offer, introduces the teaching approach, and routes student and parent enquiries straight to a quick contact. Built to turn local searches into walk-ins.",
+      "A full coaching-institute site for Siddhi's Coaching Classes in Chembur, Mumbai — covering SSC/CBSE/ICSE school batches, HSC Science & Commerce, and entrance prep (NEET, JEE, MH-CET, CA Foundation). It surfaces live batch schedules with seat availability, faculty, and results, plus an admin dashboard to manage courses, gallery, and toppers behind a login.",
     liveUrl: "https://siddhicoachingclasses.com/",
-    category: "Business",
+    category: "Web App",
     industry: "Education",
     year: "2025",
   },
