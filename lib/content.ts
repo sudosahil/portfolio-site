@@ -46,7 +46,7 @@ export const caseProjects: CaseProject[] = [
     tagline: "Success begins here.",
     description:
       "A full coaching-institute site for Siddhi's Coaching Classes in Chembur, Mumbai — covering SSC/CBSE/ICSE school batches, HSC Science & Commerce, and entrance prep (NEET, JEE, MH-CET, CA Foundation). It surfaces live batch schedules with seat availability, faculty, and results, plus an admin dashboard to manage courses, gallery, and toppers behind a login.",
-    liveUrl: "https://siddhicoachingclasses.com/",
+    liveUrl: "https://siddhiscoachingclasses.com/",
     category: "Web App",
     industry: "Education",
     year: "2025",
