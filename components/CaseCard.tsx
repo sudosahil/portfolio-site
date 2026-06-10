@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export interface CaseProject {
@@ -27,13 +27,39 @@ function screenshotUrl(siteUrl: string) {
 const PREVIEW_WIDTH = 1280;
 const PREVIEW_HEIGHT = 960; // 4:3, matches the card frame
 
+// Loading six full sites at once chokes the page. This gate keeps at most two
+// previews *loading* concurrently across all cards; the rest wait their turn
+// (a hovered card jumps the queue). Slots free up as each preview finishes.
+const MAX_LIVE_LOADS = 2;
+let activeLoads = 0;
+const waiters: Array<() => void> = [];
+
+function requestLoadSlot(run: () => void, priority: boolean) {
+  if (activeLoads < MAX_LIVE_LOADS) {
+    activeLoads++;
+    run();
+  } else if (priority) {
+    waiters.unshift(run);
+  } else {
+    waiters.push(run);
+  }
+}
+
+function releaseLoadSlot() {
+  const next = waiters.shift();
+  if (next) {
+    next(); // one finished, one starts — activeLoads unchanged
+  } else {
+    activeLoads = Math.max(0, activeLoads - 1);
+  }
+}
+
 /**
  * Büro-style case-study card: a media thumbnail with the project title,
- * plus category + industry meta. On fine-pointer devices it quietly preloads
- * the real site in a scaled iframe once the card scrolls into view, then
- * reveals it on hover — so the live preview appears instantly instead of
- * booting up on first hover. The static screenshot stays underneath as a
- * fast, always-there fallback.
+ * plus category + industry meta. On fine-pointer devices it preloads the real
+ * site in a scaled, sandboxed iframe (throttled to two at a time) and reveals
+ * it on hover, so the live preview appears without a wait. The static
+ * screenshot stays underneath as a fast, always-there fallback.
  */
 export function CaseCard({
   project,
@@ -45,19 +71,39 @@ export function CaseCard({
   const [err, setErr] = useState(false);
   const [canPreview, setCanPreview] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [armed, setArmed] = useState(false); // iframe mounted + preloading
+  const [armed, setArmed] = useState(false); // iframe mounted + loading
   const [frameReady, setFrameReady] = useState(false);
   const [scale, setScale] = useState(PREVIEW_HEIGHT / PREVIEW_WIDTH);
 
   const frameRef = useRef<HTMLDivElement>(null);
+  const requestedRef = useRef(false);
+  const grantedRef = useRef(false);
+  const releasedRef = useRef(false);
+  const cbRef = useRef<(() => void) | null>(null);
+
+  const release = useCallback(() => {
+    if (!grantedRef.current || releasedRef.current) return;
+    releasedRef.current = true;
+    releaseLoadSlot();
+  }, []);
+
+  const arm = useCallback((priority: boolean) => {
+    if (requestedRef.current) return;
+    requestedRef.current = true;
+    const run = () => {
+      grantedRef.current = true;
+      setArmed(true);
+    };
+    cbRef.current = run;
+    requestLoadSlot(run, priority);
+  }, []);
 
   // Only offer the live preview where hovering is meaningful (not touch).
   useEffect(() => {
     setCanPreview(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
   }, []);
 
-  // Preload the live site once the card nears the viewport, so the preview is
-  // already booted by the time the user hovers (no wait-on-hover delay).
+  // Queue the preload once the card nears the viewport.
   useEffect(() => {
     if (!canPreview) return;
     const el = frameRef.current;
@@ -65,15 +111,34 @@ export function CaseCard({
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setArmed(true);
+          arm(false);
           io.disconnect();
         }
       },
-      { rootMargin: "300px" }
+      { rootMargin: "200px" }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [canPreview]);
+  }, [canPreview, arm]);
+
+  // Safety: never hold a load slot forever if onLoad never fires.
+  useEffect(() => {
+    if (!armed) return;
+    const t = setTimeout(release, 10000);
+    return () => clearTimeout(t);
+  }, [armed, release]);
+
+  // On unmount: free a held slot, or drop the request if still queued.
+  useEffect(() => {
+    return () => {
+      if (grantedRef.current) {
+        release();
+      } else if (cbRef.current) {
+        const i = waiters.indexOf(cbRef.current);
+        if (i !== -1) waiters.splice(i, 1);
+      }
+    };
+  }, [release]);
 
   // Keep the iframe scaled so its 1280px desktop render fills the card width.
   useEffect(() => {
@@ -102,7 +167,7 @@ export function CaseCard({
       onMouseEnter={() => {
         if (!canPreview) return;
         setHovered(true);
-        setArmed(true);
+        arm(true); // jump the queue for an intentful hover
       }}
       onMouseLeave={() => setHovered(false)}
     >
@@ -126,7 +191,7 @@ export function CaseCard({
           </div>
         )}
 
-        {/* Live site preview — mounted on first hover, faded in once loaded */}
+        {/* Live site preview — sandboxed, scaled, faded in once loaded */}
         {armed && (
           <iframe
             src={project.liveUrl}
@@ -135,7 +200,13 @@ export function CaseCard({
             aria-hidden
             scrolling="no"
             loading="lazy"
-            onLoad={() => setFrameReady(true)}
+            sandbox="allow-scripts allow-same-origin"
+            referrerPolicy="no-referrer"
+            onLoad={() => {
+              setFrameReady(true);
+              release();
+            }}
+            onError={release}
             style={{
               width: PREVIEW_WIDTH,
               height: PREVIEW_HEIGHT,
