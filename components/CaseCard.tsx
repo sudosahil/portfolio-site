@@ -1,7 +1,7 @@
-﻿/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export interface CaseProject {
@@ -22,9 +22,16 @@ function screenshotUrl(siteUrl: string) {
   )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=960`;
 }
 
+// The live preview renders the real site at this desktop viewport, then scales
+// it down to fill the card frame — so layouts look like a proper desktop shot.
+const PREVIEW_WIDTH = 1280;
+const PREVIEW_HEIGHT = 960; // 4:3, matches the card frame
+
 /**
  * Büro-style case-study card: a media thumbnail with the project title,
- * plus category + industry meta.
+ * plus category + industry meta. On hover (fine-pointer devices only) it
+ * loads the real site in a scaled iframe so you see it boot up live —
+ * the static screenshot stays underneath as a fast, always-there fallback.
  */
 export function CaseCard({
   project,
@@ -34,6 +41,31 @@ export function CaseCard({
   index: number;
 }) {
   const [err, setErr] = useState(false);
+  const [canPreview, setCanPreview] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [armed, setArmed] = useState(false); // iframe has been mounted at least once
+  const [frameReady, setFrameReady] = useState(false);
+  const [scale, setScale] = useState(PREVIEW_HEIGHT / PREVIEW_WIDTH);
+
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  // Only offer the live preview where hovering is meaningful (not touch).
+  useEffect(() => {
+    setCanPreview(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+
+  // Keep the iframe scaled so its 1280px desktop render fills the card width.
+  useEffect(() => {
+    const el = frameRef.current;
+    if (!el) return;
+    const update = () => setScale(el.clientWidth / PREVIEW_WIDTH);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [armed]);
+
+  const showPreview = canPreview && hovered;
 
   return (
     <motion.a
@@ -46,8 +78,17 @@ export function CaseCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: (index % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={() => {
+        if (!canPreview) return;
+        setHovered(true);
+        setArmed(true);
+      }}
+      onMouseLeave={() => setHovered(false)}
     >
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-paper2 border border-line">
+      <div
+        ref={frameRef}
+        className="relative w-full aspect-[4/3] overflow-hidden bg-paper2 border border-line"
+      >
         {!err ? (
           <img
             src={screenshotUrl(project.liveUrl)}
@@ -63,6 +104,38 @@ export function CaseCard({
             </span>
           </div>
         )}
+
+        {/* Live site preview — mounted on first hover, faded in once loaded */}
+        {armed && (
+          <iframe
+            src={project.liveUrl}
+            title={`${project.name} live preview`}
+            tabIndex={-1}
+            aria-hidden
+            scrolling="no"
+            loading="lazy"
+            onLoad={() => setFrameReady(true)}
+            style={{
+              width: PREVIEW_WIDTH,
+              height: PREVIEW_HEIGHT,
+              transform: `scale(${scale})`,
+            }}
+            className={`absolute top-0 left-0 origin-top-left border-0 pointer-events-none transition-opacity duration-500 ${
+              showPreview && frameReady ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        )}
+
+        {/* "Live" affordance while previewing */}
+        <span
+          className={`absolute top-3 left-3 flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] bg-red text-paper px-2 py-1 transition-opacity duration-300 ${
+            showPreview ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-paper animate-pulse" />
+          {frameReady ? "Live" : "Loading"}
+        </span>
+
         <span className="absolute top-3 right-3 font-mono text-[10px] uppercase tracking-[0.12em] bg-ink text-paper px-2 py-1">
           {project.year}
         </span>
