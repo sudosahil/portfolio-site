@@ -35,7 +35,7 @@ const notes = [
   },
   {
     num: "03",
-    text: "Pricing starts at Rs. 15,000 for a business website and Rs. 8,000 for a landing page. If your budget is lower, tell me — I would rather have an honest conversation than waste both our time.",
+    text: "Every project is scoped to what you actually need — no fixed packages. Tell me what you're after and roughly what you're working with, and I'll be upfront about what's realistic. I would rather have an honest conversation than waste both our time.",
   },
   {
     num: "04",

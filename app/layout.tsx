@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Anton, Archivo, DM_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
@@ -37,7 +37,13 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Sahil Undale — Web Developer · Mumbai & Pune",
   description:
-    "Web developer based in Mumbai & Pune, building websites for small businesses. Fast turnaround, honest pricing, direct communication.",
+    "Web developer based in Mumbai & Pune, building websites for small businesses. Fast turnaround, no jargon, direct communication.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0d0d0d",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

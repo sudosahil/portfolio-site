@@ -4,6 +4,8 @@ export const caseProjects: CaseProject[] = [
   {
     name: "Samrat Driving School",
     tagline: "Learn to drive.",
+    description:
+      "A marketing site for a driving school running since 2000 in Chhatrapati Sambhajinagar. It lays out the 15-day, 120 km car-training course, walks visitors through how it works, and routes every enquiry straight to WhatsApp — backed by a wall of 4.8-star Google reviews.",
     liveUrl: "https://samrat-driving-school-zc3d.vercel.app/",
     category: "Business",
     industry: "Education",
@@ -12,6 +14,8 @@ export const caseProjects: CaseProject[] = [
   {
     name: "Bombay Gaming Co.",
     tagline: "Book. Play. Repeat.",
+    description:
+      "An app-style booking experience for a Mumbai gaming lounge — browse the setups, pick a slot, and reserve a station in a few taps. Fast, animated, and built to feel like a product rather than a brochure.",
     liveUrl: "https://bombaygamingcompany.vercel.app/",
     category: "Web App",
     industry: "Entertainment",
@@ -20,6 +24,8 @@ export const caseProjects: CaseProject[] = [
   {
     name: "Earthen Routes",
     tagline: "Food that heals.",
+    description:
+      "The home for a volunteer-run community farm at TATA ACTREC that grows organic food for children in cancer care. It tells the story, shows the work — kitchen gardens, land projects, and workshops — and gives visitors clear ways to volunteer or donate.",
     liveUrl: "https://earthenroutes.in/",
     category: "Non-profit",
     industry: "Community",
@@ -28,6 +34,8 @@ export const caseProjects: CaseProject[] = [
   {
     name: "TheoremLabs",
     tagline: "Innovation studio.",
+    description:
+      "A corporate site for a technology and innovation studio. Dark, motion-led, and confident, it frames the studio's work and capabilities for prospective partners and clients.",
     liveUrl: "https://theoremlabs-xi.vercel.app/",
     category: "Corporate",
     industry: "Technology",
@@ -50,7 +58,6 @@ export const services = [
       "Google Maps embed",
       "Delivered in 2 weeks",
     ],
-    price: "Starting from ₹15,000",
   },
   {
     num: "02",
@@ -65,7 +72,6 @@ export const services = [
       "90+ Lighthouse score",
       "Delivered in 5–7 days",
     ],
-    price: "Starting from ₹8,000",
   },
   {
     num: "03",
@@ -80,7 +86,6 @@ export const services = [
       "Order confirmation emails",
       "Mobile-optimised throughout",
     ],
-    price: "Starting from ₹25,000",
   },
   {
     num: "04",
@@ -90,11 +95,10 @@ export const services = [
       "Monthly hosting, updates, and peace of mind. Your site stays live, fast, and maintained — without you having to think about it.",
     includes: [
       "Managed hosting on fast servers",
-      "Monthly content updates (text, images, pricing)",
+      "Monthly content updates (text, images, offers)",
       "Security monitoring",
       "Priority support via WhatsApp",
     ],
-    price: "₹1,500 / month",
   },
 ];
 

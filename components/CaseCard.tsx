@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 export interface CaseProject {
   name: string;
   tagline: string;
+  description: string;
   liveUrl: string;
   category: string;
   industry: string;
@@ -66,7 +67,7 @@ export function CaseCard({
       </div>
 
       <div className="mt-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-        <span className="text-[20px] md:text-[26px] font-medium tracking-tight leading-tight whitespace-nowrap">
+        <span className="text-[20px] md:text-[26px] font-medium tracking-tight leading-tight whitespace-normal sm:whitespace-nowrap">
           {project.name}
         </span>
         <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-grey shrink-0">
@@ -75,6 +76,9 @@ export function CaseCard({
       </div>
       <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-grey/70 mt-1">
         {project.industry}
+      </p>
+      <p className="text-[14px] leading-[1.6] text-grey-dark mt-3 max-w-md">
+        {project.description}
       </p>
     </motion.a>
   );

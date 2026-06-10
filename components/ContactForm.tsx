@@ -15,7 +15,6 @@ export function ContactForm() {
     name: "",
     business: "",
     need: "",
-    budget: "",
     message: "",
     whatsapp: "",
   });
@@ -68,48 +67,26 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <label className={labelClass}>What do you need? *</label>
-          <select
-            value={form.need}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setForm({ ...form, need: e.target.value })
-            }
-            required
-            className={inputClass}
-          >
-            <option value="" disabled>
-              Select an option
-            </option>
-            <option value="new">A new website from scratch</option>
-            <option value="redesign">Redesign my existing website</option>
-            <option value="landing">A landing page for ads</option>
-            <option value="store">An online store</option>
-            <option value="maintenance">Monthly maintenance</option>
-            <option value="other">Something else</option>
-          </select>
-        </div>
-        <div>
-          <label className={labelClass}>Budget range *</label>
-          <select
-            value={form.budget}
-            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              setForm({ ...form, budget: e.target.value })
-            }
-            required
-            className={inputClass}
-          >
-            <option value="" disabled>
-              Select a range
-            </option>
-            <option value="under10k">Under ₹10,000</option>
-            <option value="10-30k">₹10,000 – ₹30,000</option>
-            <option value="30-80k">₹30,000 – ₹80,000</option>
-            <option value="80k+">₹80,000+</option>
-            <option value="notsure">Not sure yet</option>
-          </select>
-        </div>
+      <div>
+        <label className={labelClass}>What do you need? *</label>
+        <select
+          value={form.need}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            setForm({ ...form, need: e.target.value })
+          }
+          required
+          className={inputClass}
+        >
+          <option value="" disabled>
+            Select an option
+          </option>
+          <option value="new">A new website from scratch</option>
+          <option value="redesign">Redesign my existing website</option>
+          <option value="landing">A landing page for ads</option>
+          <option value="store">An online store</option>
+          <option value="maintenance">Monthly maintenance</option>
+          <option value="other">Something else</option>
+        </select>
       </div>
 
       <div>

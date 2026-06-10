@@ -1,8 +1,8 @@
-﻿import Link from "next/link";
-import { Reveal, RevealLines } from "@/components/Reveal";
+﻿import { Reveal, RevealLines } from "@/components/Reveal";
 import { LineDivider } from "@/components/LineDivider";
 import { Marquee } from "@/components/Marquee";
 import { SectionLabel } from "@/components/SectionLabel";
+import { QueryForm } from "@/components/QueryForm";
 import { services } from "@/lib/content";
 
 const process = [
@@ -46,8 +46,8 @@ const expectations = [
   },
   {
     num: "04",
-    title: "Honest pricing.",
-    desc: "You get a clear quote upfront. No surprise charges, no scope creep billed separately. What we agree on is what you pay.",
+    title: "No surprises.",
+    desc: "You get a clear scope upfront. No mystery add-ons, no work tacked on without a heads-up. What we agree on is what gets built.",
   },
 ];
 
@@ -105,9 +105,6 @@ export default function WhatIDoPage() {
                       </li>
                     ))}
                   </ul>
-                  <p className="text-[18px] md:text-[20px] font-medium tracking-tight mt-6">
-                    {s.price}
-                  </p>
                 </div>
               </div>
             </Reveal>
@@ -199,17 +196,28 @@ export default function WhatIDoPage() {
           ))}
         </div>
 
-        <Reveal delay={0.1}>
-          <div className="mt-16">
-            <Link
-              href="/contact"
-              data-cursor="let's go"
-              className="inline-flex items-center px-7 py-4 bg-ink text-paper font-mono text-[12px] uppercase tracking-[0.14em] hover:bg-red transition-colors"
-            >
-              Not sure what you need? Let&apos;s figure it out →
-            </Link>
+      </section>
+
+      {/* Send a query */}
+      <section className="px-5 md:px-8 py-16 md:py-24 border-t border-line">
+        <SectionLabel>Start a project</SectionLabel>
+        <div className="mt-3 grid grid-cols-1 md:grid-cols-12 gap-10">
+          <div className="md:col-span-5">
+            <h2 className="display text-[11vw] md:text-[4vw] leading-[0.92]">
+              Have something
+              <br />
+              in mind?
+            </h2>
+            <p className="mt-6 text-[16px] md:text-[18px] leading-[1.65] text-grey-dark max-w-md">
+              No packages to pick from and nothing to commit to. Tell me what you
+              need and I&apos;ll come back with a plan built around your business
+              — usually within 24 hours.
+            </p>
           </div>
-        </Reveal>
+          <Reveal delay={0.1} className="md:col-span-6 md:col-start-7">
+            <QueryForm />
+          </Reveal>
+        </div>
       </section>
     </div>
   );

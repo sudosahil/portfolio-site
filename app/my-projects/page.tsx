@@ -7,6 +7,8 @@ const extraProjects = [
   {
     name: "Personal Portfolio",
     tagline: "You're on it.",
+    description:
+      "This site. A fast, hand-built portfolio and services site — the work, the process, and a direct line to start a project. Designed and coded from scratch in Next.js with custom motion throughout.",
     liveUrl: "https://sahilundale.in",
     category: "Portfolio",
     industry: "Personal",
@@ -29,7 +31,7 @@ export default function MyProjectsPage() {
         </h1>
         <Reveal delay={0.15}>
           <p className="mt-8 text-[18px] md:text-[22px] leading-[1.4] tracking-tight max-w-xl text-grey-dark">
-            Five projects. Different industries, different goals — all built to
+            Real work across different industries and goals — every one built to
             do a job. Click any to open the live site.
           </p>
         </Reveal>
