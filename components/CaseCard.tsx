@@ -29,9 +29,11 @@ const PREVIEW_HEIGHT = 960; // 4:3, matches the card frame
 
 /**
  * Büro-style case-study card: a media thumbnail with the project title,
- * plus category + industry meta. On hover (fine-pointer devices only) it
- * loads the real site in a scaled iframe so you see it boot up live —
- * the static screenshot stays underneath as a fast, always-there fallback.
+ * plus category + industry meta. On fine-pointer devices it quietly preloads
+ * the real site in a scaled iframe once the card scrolls into view, then
+ * reveals it on hover — so the live preview appears instantly instead of
+ * booting up on first hover. The static screenshot stays underneath as a
+ * fast, always-there fallback.
  */
 export function CaseCard({
   project,
@@ -43,7 +45,7 @@ export function CaseCard({
   const [err, setErr] = useState(false);
   const [canPreview, setCanPreview] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [armed, setArmed] = useState(false); // iframe has been mounted at least once
+  const [armed, setArmed] = useState(false); // iframe mounted + preloading
   const [frameReady, setFrameReady] = useState(false);
   const [scale, setScale] = useState(PREVIEW_HEIGHT / PREVIEW_WIDTH);
 
@@ -54,6 +56,25 @@ export function CaseCard({
     setCanPreview(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
   }, []);
 
+  // Preload the live site once the card nears the viewport, so the preview is
+  // already booted by the time the user hovers (no wait-on-hover delay).
+  useEffect(() => {
+    if (!canPreview) return;
+    const el = frameRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setArmed(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [canPreview]);
+
   // Keep the iframe scaled so its 1280px desktop render fills the card width.
   useEffect(() => {
     const el = frameRef.current;
@@ -63,7 +84,7 @@ export function CaseCard({
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [armed]);
+  }, []);
 
   const showPreview = canPreview && hovered;
 
