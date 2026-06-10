@@ -14,10 +14,12 @@ export interface CaseProject {
   year: string;
 }
 
+// Capture at a 4:3 viewport so the screenshot matches the card frame exactly
+// (aspect-[4/3]) and fills it without awkward cropping.
 function screenshotUrl(siteUrl: string) {
   return `https://api.microlink.io?url=${encodeURIComponent(
     siteUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url`;
+  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=960`;
 }
 
 /**

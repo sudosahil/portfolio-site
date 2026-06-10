@@ -41,6 +41,16 @@ export const caseProjects: CaseProject[] = [
     industry: "Technology",
     year: "2025",
   },
+  {
+    name: "Siddhi Coaching Classes",
+    tagline: "Learn. Grow. Succeed.",
+    description:
+      "A clean, mobile-first site for a coaching institute — it lays out the courses and batches on offer, introduces the teaching approach, and routes student and parent enquiries straight to a quick contact. Built to turn local searches into walk-ins.",
+    liveUrl: "https://siddhicoachingclasses.com/",
+    category: "Business",
+    industry: "Education",
+    year: "2025",
+  },
 ];
 
 export const services = [
@@ -103,7 +113,7 @@ export const services = [
 ];
 
 export const stats = [
-  { value: 5, suffix: "", label: "Projects shipped" },
+  { value: 6, suffix: "", label: "Projects shipped" },
   { value: 2, suffix: " wk", label: "Avg. build time" },
   { value: 95, suffix: "", label: "Lighthouse score" },
 ];
