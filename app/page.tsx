@@ -27,7 +27,7 @@ export default function Home() {
           <Reveal delay={0.15} className="md:col-span-7 md:col-start-6">
             <p className="text-[20px] md:text-[26px] leading-[1.35] tracking-tight max-w-2xl">
               I&apos;m Sahil, a{" "}
-              <span className="font-serif-italic text-red">🤟 web developer</span>{" "}
+              <span className="font-serif-italic text-red">web developer</span>{" "}
               based in Mumbai &amp; Pune. I build websites for small businesses —
               clean, fast, and built to bring in customers.
             </p>

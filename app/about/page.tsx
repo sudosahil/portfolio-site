@@ -29,8 +29,7 @@ export default function AboutPage() {
               businesses that
               want to look credible and grow online — and I genuinely care about
               the people behind them. Outside of code I&apos;m running events,
-              poking at AI tools, and chasing the next thing to build.{" "}
-              <span className="font-serif-italic text-red">💫</span>
+              poking at AI tools, and chasing the next thing to build.
             </p>
           </Reveal>
         </div>
