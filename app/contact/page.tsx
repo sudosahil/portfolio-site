@@ -1,7 +1,6 @@
 ﻿import { Reveal, RevealLines } from "@/components/Reveal";
 import { LineDivider } from "@/components/LineDivider";
 import { SectionLabel } from "@/components/SectionLabel";
-import { ContactForm } from "@/components/ContactForm";
 
 const channels = [
   {
@@ -114,12 +113,28 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form */}
+      {/* Reach out */}
       <section>
-        <SectionLabel>Or fill this out</SectionLabel>
-        <div className="mt-6">
-          <ContactForm />
-        </div>
+        <SectionLabel>Ready when you are</SectionLabel>
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-8">
+          Skip the form.
+          <br />
+          Just message me.
+        </h2>
+        <Reveal>
+          <a
+            href="https://wa.me/917559292204?text=Hi%20Sahil%2C%20I%27d%20like%20to%20talk%20about%20a%20web%20project."
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="send"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-ink text-paper font-mono text-[12px] uppercase tracking-[0.14em] hover:bg-red transition-colors"
+          >
+            Message me on WhatsApp →
+          </a>
+        </Reveal>
+        <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-grey mt-5">
+          No spam. No cold calls. Just a conversation.
+        </p>
       </section>
     </div>
   );
