@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Preloader } from "@/components/Preloader";
 import { CustomCursor } from "@/components/CustomCursor";
+import { Analytics } from "@vercel/analytics/next";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
