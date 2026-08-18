@@ -35,10 +35,38 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+const siteUrl = "https://sahilundale.in";
+const ogImage = "/sahil-undale-web-developer-mumbai-pune.png";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Sahil Undale — Web Developer · Mumbai & Pune",
   description:
     "Web developer based in Mumbai & Pune, building websites for small businesses. Fast turnaround, no jargon, direct communication.",
+  openGraph: {
+    title: "Sahil Undale — Web Developer · Mumbai & Pune",
+    description:
+      "Web developer based in Mumbai & Pune, building websites for small businesses. Fast turnaround, no jargon, direct communication.",
+    url: siteUrl,
+    siteName: "Sahil Undale",
+    images: [
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Sahil Undale — Web Developer, Mumbai & Pune",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sahil Undale — Web Developer · Mumbai & Pune",
+    description:
+      "Web developer based in Mumbai & Pune, building websites for small businesses.",
+    images: [ogImage],
+  },
 };
 
 export const viewport: Viewport = {
@@ -58,6 +86,30 @@ export default function RootLayout({
       className={`${anton.variable} ${archivo.variable} ${dmMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="bg-paper text-ink font-sans antialiased min-h-screen flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Sahil Undale",
+              url: siteUrl,
+              jobTitle: "Web Developer",
+              image: `${siteUrl}${ogImage}`,
+              worksFor: {
+                "@type": "Organization",
+                name: "TheoremLabs India",
+              },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Mumbai",
+                addressRegion: "Maharashtra",
+                addressCountry: "IN",
+              },
+              sameAs: [],
+            }),
+          }}
+        />
         <Preloader />
         <CustomCursor />
         <Nav />

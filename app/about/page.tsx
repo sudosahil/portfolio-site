@@ -1,9 +1,25 @@
+import Image from "next/image";
 import { Reveal, RevealLines } from "@/components/Reveal";
 import { LineDivider } from "@/components/LineDivider";
 import { Marquee } from "@/components/Marquee";
 import { SectionLabel } from "@/components/SectionLabel";
 import { Education } from "@/components/Education";
 import { skills } from "@/lib/content";
+
+const brandImages = [
+  {
+    src: "/sahil-undale-web-developer-mumbai-pune.png",
+    alt: "Sahil Undale — web developer in Mumbai & Pune, websites that actually work",
+  },
+  {
+    src: "/sahil-undale-invisible-online-local-business.png",
+    alt: "Sahil Undale — helping local businesses in Mumbai & Pune stop being invisible online",
+  },
+  {
+    src: "/sahil-undale-need-a-website-developer.png",
+    alt: "Sahil Undale — web developer building clean, fast websites for businesses",
+  },
+];
 
 const currently = [
   { label: "Location", value: "Mumbai & Pune, India" },
@@ -70,6 +86,25 @@ export default function AboutPage() {
       {/* Education */}
       <section className="px-5 md:px-8 pb-16 md:pb-24">
         <Education />
+      </section>
+
+      {/* Brand */}
+      <section className="px-5 md:px-8 pb-16 md:pb-24">
+        <SectionLabel>On brand</SectionLabel>
+        <LineDivider className="mt-6 mb-8" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {brandImages.map((img) => (
+            <Reveal key={img.src}>
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={1200}
+                height={630}
+                className="w-full h-auto border border-line"
+              />
+            </Reveal>
+          ))}
+        </div>
       </section>
     </div>
   );
