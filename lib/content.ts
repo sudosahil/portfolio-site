@@ -17,7 +17,7 @@ export const caseProjects: CaseProject[] = [
     tagline: "Flowers & gifting, engineered to convert.",
     description:
       "Custom high-converting storefront with optimized catalog architecture, streamlined checkout flows, and automated payment pipelines engineered to scale sales volume.",
-    liveUrl: "https://www.withlovenregards.com",
+    liveUrl: "https://test.onlineflowersandcakes.com",
     category: "E-Commerce",
     industry: "Custom Checkout",
     year: "2026",
