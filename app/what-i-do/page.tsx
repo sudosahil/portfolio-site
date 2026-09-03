@@ -59,7 +59,7 @@ export default function WhatIDoPage() {
         <Reveal>
           <SectionLabel>What I Do</SectionLabel>
         </Reveal>
-        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-[0.84] tracking-tighter2">
+        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-none tracking-tighter2">
           <RevealLines lines={["Websites that", "earn their"]} />
           <span className="text-red">
             <RevealLines lines={["keep."]} delay={0.16} />
@@ -84,7 +84,7 @@ export default function WhatIDoPage() {
                 <span className="font-mono text-[12px] text-grey md:col-span-1">
                   {s.num}
                 </span>
-                <h3 className="display text-[9vw] md:text-[4vw] leading-[0.95] md:col-span-6">
+                <h3 className="display text-[9vw] md:text-[4vw] leading-none md:col-span-6">
                   {s.title}
                 </h3>
                 <div className="md:col-span-5">
@@ -127,7 +127,7 @@ export default function WhatIDoPage() {
       {/* Why it matters */}
       <section className="px-5 md:px-8 py-16 md:py-24">
         <SectionLabel>Why it matters</SectionLabel>
-        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-none mt-3 mb-10">
           Most business websites
           <br />
           are doing nothing.
@@ -151,7 +151,7 @@ export default function WhatIDoPage() {
       {/* Process */}
       <section className="px-5 md:px-8 py-16 md:py-24">
         <SectionLabel>How it works</SectionLabel>
-        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-12">
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-none mt-3 mb-12">
           Four steps,
           <br />
           zero drama.
@@ -203,7 +203,7 @@ export default function WhatIDoPage() {
         <SectionLabel>Start a project</SectionLabel>
         <div className="mt-3 grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
-            <h2 className="display text-[11vw] md:text-[4vw] leading-[0.92]">
+            <h2 className="display text-[11vw] md:text-[4vw] leading-none">
               Have something
               <br />
               in mind?

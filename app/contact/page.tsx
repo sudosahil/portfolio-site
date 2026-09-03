@@ -50,7 +50,7 @@ export default function ContactPage() {
         <Reveal>
           <SectionLabel>Contact</SectionLabel>
         </Reveal>
-        <h1 className="display mt-5 text-[15vw] md:text-[12vw] leading-[0.84] tracking-tighter2">
+        <h1 className="display mt-5 text-[15vw] md:text-[12vw] leading-none tracking-tighter2">
           <RevealLines lines={["Let's build"]} />
           <span className="text-red">
             <RevealLines lines={["something."]} delay={0.14} />
@@ -94,7 +94,7 @@ export default function ContactPage() {
       {/* Before you write */}
       <section className="mb-16">
         <SectionLabel>Before you write</SectionLabel>
-        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-none mt-3 mb-10">
           A few things worth
           <br />
           knowing first.
@@ -116,7 +116,7 @@ export default function ContactPage() {
       {/* Reach out */}
       <section>
         <SectionLabel>Ready when you are</SectionLabel>
-        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-8">
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-none mt-3 mb-8">
           Skip the form.
           <br />
           Just message me.

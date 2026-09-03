@@ -46,6 +46,19 @@ body {
   }
 }
 
+@layer components {
+  /* Büro-style huge display lockup. In the components layer (not utilities)
+     so a per-element leading-[X] utility always wins over this default —
+     otherwise the 0.86 below silently clobbers every heading's own line-height. */
+  .display {
+    font-family: var(--font-anton), Impact, sans-serif;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -53,14 +66,6 @@ body {
   .font-serif-italic {
     font-family: var(--font-instrument-serif), serif;
     font-style: italic;
-  }
-  /* Büro-style huge display lockup */
-  .display {
-    font-family: var(--font-anton), Impact, sans-serif;
-    text-transform: uppercase;
-    line-height: 0.86;
-    letter-spacing: -0.02em;
-    font-weight: 400;
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;

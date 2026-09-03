@@ -1,6 +1,50 @@
-﻿import type { CaseProject } from "@/components/CaseCard";
+import type { CaseProject } from "@/components/CaseCard";
 
 export const caseProjects: CaseProject[] = [
+  {
+    name: "PMIS",
+    tagline: "Projects, procurement, payments — one system.",
+    description:
+      "Centralized project monitoring platform built to orchestrate capital allocation, multi-tier milestone deadlines, and role-based access control across distributed teams.",
+    liveUrl: "https://pmis-gamma.vercel.app",
+    category: "Enterprise SaaS",
+    industry: "Internal Tooling",
+    year: "2026",
+    tags: ["Enterprise SaaS", "Internal Tooling", "Full Stack"],
+  },
+  {
+    name: "With Love & Regards",
+    tagline: "Flowers & gifting, engineered to convert.",
+    description:
+      "Custom high-converting storefront with optimized catalog architecture, streamlined checkout flows, and automated payment pipelines engineered to scale sales volume.",
+    liveUrl: "https://www.withlovenregards.com",
+    category: "E-Commerce",
+    industry: "Custom Checkout",
+    year: "2026",
+    tags: ["E-Commerce", "Custom Checkout", "Brand Platform"],
+  },
+  {
+    name: "Bombay Gaming Co.",
+    tagline: "Book. Play. Repeat.",
+    description:
+      "Full-stack station reservation engine. Integrated custom slot-locking logic and Razorpay checkout, turning manual WhatsApp booking chaos into an automated revenue pipeline.",
+    liveUrl: "https://bombaygamingcompany.vercel.app/",
+    category: "Web Application",
+    industry: "Fintech Integration",
+    year: "2025",
+    tags: ["Web Application", "Booking System", "Fintech Integration"],
+  },
+  {
+    name: "Siddhi Coaching Classes",
+    tagline: "Success begins here.",
+    description:
+      "Complete academic portal featuring dynamic batch enrollment tracking, topper result showcases, and an authenticated administrative dashboard for real-time curriculum management.",
+    liveUrl: "https://siddhiscoachingclasses.com/",
+    category: "Educational Portal",
+    industry: "CMS",
+    year: "2025",
+    tags: ["Educational Portal", "CMS", "Full Stack"],
+  },
   {
     name: "Samrat Driving School",
     tagline: "Learn to drive.",
@@ -10,16 +54,6 @@ export const caseProjects: CaseProject[] = [
     category: "Business",
     industry: "Education",
     year: "2024",
-  },
-  {
-    name: "Bombay Gaming Co.",
-    tagline: "Book. Play. Repeat.",
-    description:
-      "A full-stack booking platform for a gaming café in Ghatkopar, Mumbai — players pick a station and time slot and pay online through Razorpay to lock in a confirmed booking. A React front end backed by a Node/Express API.",
-    liveUrl: "https://bombaygamingcompany.vercel.app/",
-    category: "Web App",
-    industry: "Entertainment",
-    year: "2025",
   },
   {
     name: "Earthen Routes",
@@ -41,81 +75,85 @@ export const caseProjects: CaseProject[] = [
     industry: "Technology",
     year: "2025",
   },
-  {
-    name: "Siddhi Coaching Classes",
-    tagline: "Success begins here.",
-    description:
-      "A full coaching-institute site for Siddhi's Coaching Classes in Chembur, Mumbai — covering SSC/CBSE/ICSE school batches, HSC Science & Commerce, and entrance prep (NEET, JEE, MH-CET, CA Foundation). It surfaces live batch schedules with seat availability, faculty, and results, plus an admin dashboard to manage courses, gallery, and toppers behind a login.",
-    liveUrl: "https://siddhiscoachingclasses.com/",
-    category: "Web App",
-    industry: "Education",
-    year: "2025",
-  },
 ];
+
+/** The 4 flagship builds — commercial and enterprise scope, shown on the homepage. */
+export const flagshipProjects = caseProjects.filter((p) => p.tags);
 
 export const services = [
   {
     num: "01",
-    title: "Business Websites",
-    desc: "Clean, fast sites that make your business look legit from the first second — built to rank on Google and turn visitors into customers.",
+    title: "Custom Web Applications",
+    desc: "Scalable, database-backed web platforms built with Next.js, Node, and PostgreSQL.",
     detail:
-      "Clean, fast sites that make your business look legit from the first second — built to rank on Google and turn visitors into customers.",
+      "Scalable, database-backed web platforms built with Next.js, Node, and PostgreSQL — architected for growing businesses, not templated for small ones.",
     includes: [
-      "Up to 5 pages (Home, About, Services, Gallery, Contact)",
-      "Mobile-first design",
-      "On-page SEO setup",
-      "Contact form with WhatsApp integration",
-      "Google Maps embed",
-      "Delivered in 2 weeks",
+      "Custom data models and relational schema design",
+      "Full-stack build — React/Next.js front end, Node/Express API",
+      "Role-based access control and authenticated dashboards",
+      "PostgreSQL or MySQL, properly indexed and normalized",
+      "Deployed on production infrastructure, not a page builder",
     ],
   },
   {
     num: "02",
-    title: "Landing Pages",
-    desc: "One page, one goal. For ad campaigns, launches, and lead capture — engineered to convert.",
+    title: "E-Commerce & Transaction Pipelines",
+    desc: "Full store architecture, frictionless checkout, and custom payment integrations (Razorpay/Stripe).",
     detail:
-      "One page, one goal. For ad campaigns, product launches, and lead capture — built to load fast and convert visitors into enquiries.",
+      "Full store architecture, frictionless checkout, and custom payment integrations — built to move inventory and close sales, not just look like a shop.",
     includes: [
-      "Single-page design optimised for conversions",
-      "Headline, benefits, CTA, and lead form",
-      "Connected to WhatsApp or email",
-      "90+ Lighthouse score",
-      "Delivered in 5–7 days",
+      "Custom catalog and checkout architecture",
+      "Razorpay / Stripe integration with server-side price validation",
+      "Cart, coupon, and abandoned-checkout recovery logic",
+      "Order management and automated confirmation emails",
+      "Built for conversion, not just for browsing",
     ],
   },
   {
     num: "03",
-    title: "E-commerce Stores",
-    desc: "Ready-to-sell stores with product pages, cart, and payment integration. Your business online, properly.",
+    title: "Enterprise Tooling & Dashboards",
+    desc: "Internal operations systems, PMIS dashboards, and administrative portals.",
     detail:
-      "Ready-to-sell stores with product pages, cart, and payment integration. Your catalogue online, properly.",
+      "Internal operations systems, PMIS-style dashboards, and administrative portals that replace spreadsheets and WhatsApp chaos with a real workflow engine.",
     includes: [
-      "Product listing pages",
-      "Cart and checkout flow",
-      "Razorpay / Stripe payment integration",
-      "Order confirmation emails",
-      "Mobile-optimised throughout",
+      "Multi-role approval chains and audit trails",
+      "Milestone tracking, budgets, and progress reporting",
+      "Admin panels built for non-technical operators",
+      "Structured around how your team actually works",
+      "Scoped to real operational requirements, not templates",
     ],
   },
   {
     num: "04",
-    title: "Care & Hosting",
-    desc: "Monthly hosting, updates, and peace of mind. Your site stays live, fast, and yours.",
+    title: "Managed Cloud & Infrastructure",
+    desc: "Production deployment on Vercel/AWS, automated backups, and 99.9% uptime maintenance.",
     detail:
-      "Monthly hosting, updates, and peace of mind. Your site stays live, fast, and maintained — without you having to think about it.",
+      "Production deployment on Vercel or AWS, automated backups, and 99.9% uptime maintenance — your system stays live, fast, and yours.",
     includes: [
-      "Managed hosting on fast servers",
-      "Monthly content updates (text, images, offers)",
-      "Security monitoring",
-      "Priority support via WhatsApp",
+      "Production deployment on Vercel or AWS",
+      "Automated backups and environment management",
+      "Uptime monitoring and performance audits",
+      "Direct engineer support — no ticket queue",
+      "Priority response via WhatsApp",
     ],
   },
 ];
 
 export const stats = [
-  { value: 6, suffix: "", label: "Projects shipped" },
-  { value: 2, suffix: " wk", label: "Avg. build time" },
-  { value: 95, suffix: "", label: "Lighthouse score" },
+  { value: caseProjects.length, suffix: "+", label: "Production Systems Shipped" },
+  { value: 95, suffix: "+", label: "Lighthouse Performance Score" },
+  { value: 2, suffix: " Wk", label: "Average Production Sprint" },
+  { value: 100, suffix: "%", label: "Direct Engineer Delivery (No Outsourcing)" },
+];
+
+/** Business-capability chips for the homepage value marquee. */
+export const capabilities = [
+  "Custom Web Applications",
+  "Razorpay & Stripe Pipelines",
+  "Enterprise Dashboards",
+  "High-Conversion Architecture",
+  "Automated Workflows",
+  "Zero Agency Overhead",
 ];
 
 export const skills = [

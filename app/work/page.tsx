@@ -46,7 +46,7 @@ export default function WorkPage() {
         <Reveal>
           <SectionLabel>Work</SectionLabel>
         </Reveal>
-        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-[0.84] tracking-tighter2">
+        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-none tracking-tighter2">
           <RevealLines lines={["The wider", "résumé."]} />
         </h1>
         <Reveal delay={0.15}>
@@ -65,7 +65,7 @@ export default function WorkPage() {
                 0{i + 1}
               </div>
               <div className="md:col-span-5">
-                <h2 className="display text-[8vw] md:text-[3.4vw] leading-[0.95] group-hover:text-red transition-colors">
+                <h2 className="display text-[8vw] md:text-[3.4vw] leading-none group-hover:text-red transition-colors">
                   {p.name}
                 </h2>
                 <div className="flex items-center gap-3 mt-3">

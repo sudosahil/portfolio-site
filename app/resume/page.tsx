@@ -24,7 +24,7 @@ export default function ResumePage() {
             Download PDF ↓
           </Link>
         </div>
-        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-[0.84] tracking-tighter2">
+        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-none tracking-tighter2">
           <RevealLines lines={["The full", "picture."]} />
         </h1>
       </section>

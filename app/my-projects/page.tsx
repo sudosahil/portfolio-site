@@ -26,7 +26,7 @@ export default function MyProjectsPage() {
         <Reveal>
           <SectionLabel>My Projects</SectionLabel>
         </Reveal>
-        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-[0.84] tracking-tighter2">
+        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-none tracking-tighter2">
           <RevealLines lines={["Built and", "shipped."]} />
         </h1>
         <Reveal delay={0.15}>
@@ -49,7 +49,7 @@ export default function MyProjectsPage() {
       {/* How I work */}
       <section className="px-5 md:px-8 py-16 md:py-24">
         <SectionLabel>How I work</SectionLabel>
-        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-none mt-3 mb-10">
           Every project starts
           <br />
           with a conversation.
@@ -73,7 +73,7 @@ export default function MyProjectsPage() {
       {/* For business owners */}
       <section className="bg-ink text-paper px-5 md:px-8 py-16 md:py-24">
         <SectionLabel dark>For business owners</SectionLabel>
-        <h2 className="display text-[11vw] md:text-[5vw] leading-[0.9] mt-4">
+        <h2 className="display text-[11vw] md:text-[5vw] leading-none mt-4">
           Your turn
           <br />
           to <span className="text-red">show up.</span>
@@ -98,7 +98,7 @@ export default function MyProjectsPage() {
       {/* Ready to start */}
       <section className="px-5 md:px-8 py-16 md:py-24">
         <SectionLabel>Ready to start?</SectionLabel>
-        <h2 className="display text-[10vw] md:text-[5.5vw] leading-[0.9] mt-3 mb-10">
+        <h2 className="display text-[10vw] md:text-[5.5vw] leading-none mt-3 mb-10">
           Your business
           <br />
           deserves to be found.

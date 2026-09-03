@@ -131,7 +131,7 @@ export function Nav() {
                             delay: 0.25 + i * 0.05,
                             ease: [0.16, 1, 0.3, 1],
                           }}
-                          className={`display text-[10vw] md:text-[6vw] leading-[0.95] transition-colors duration-200 ${
+                          className={`display text-[10vw] md:text-[6vw] leading-none transition-colors duration-200 ${
                             activeLink
                               ? "text-red"
                               : "text-paper group-hover:text-red"

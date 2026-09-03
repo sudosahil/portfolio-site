@@ -35,7 +35,7 @@ export default function AboutPage() {
         <Reveal>
           <SectionLabel>About</SectionLabel>
         </Reveal>
-        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-[0.84] tracking-tighter2">
+        <h1 className="display mt-5 text-[14vw] md:text-[11vw] leading-none tracking-tighter2">
           <RevealLines lines={["Hi, I'm", "Sahil."]} />
         </h1>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-6">

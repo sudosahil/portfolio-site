@@ -3,6 +3,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Tag } from "./Tag";
 
 export interface CaseProject {
   name: string;
@@ -12,6 +13,8 @@ export interface CaseProject {
   category: string;
   industry: string;
   year: string;
+  /** Business-impact tags (e.g. "Enterprise SaaS"). When present, shown as pills instead of the category/industry line. */
+  tags?: string[];
 }
 
 // Capture at a 4:3 viewport so the screenshot matches the card frame exactly
@@ -237,13 +240,23 @@ export function CaseCard({
         <span className="text-[20px] md:text-[26px] font-medium tracking-tight leading-tight whitespace-normal sm:whitespace-nowrap">
           {project.name}
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-grey shrink-0">
-          {project.category}
-        </span>
+        {!project.tags && (
+          <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-grey shrink-0">
+            {project.category}
+          </span>
+        )}
       </div>
-      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-grey/70 mt-1">
-        {project.industry}
-      </p>
+      {project.tags ? (
+        <div className="flex flex-wrap gap-2 mt-2">
+          {project.tags.map((t) => (
+            <Tag key={t}>{t}</Tag>
+          ))}
+        </div>
+      ) : (
+        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-grey/70 mt-1">
+          {project.industry}
+        </p>
+      )}
       <p className="text-[14px] leading-[1.6] text-grey-dark mt-3 max-w-md">
         {project.description}
       </p>

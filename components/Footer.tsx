@@ -11,7 +11,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-paper relative overflow-hidden">
+    <footer id="contact" className="bg-ink text-paper relative overflow-hidden scroll-mt-20">
       {/* Giant CTA */}
       <div className="px-5 md:px-8 pt-20 md:pt-28 pb-10">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40 mb-6">
@@ -29,6 +29,15 @@ export function Footer() {
             </span>
           </span>
         </Link>
+        <a
+          href="https://wa.me/917559292204?text=Hi%20Sahil%2C%20I%27d%20like%20to%20talk%20about%20a%20web%20project."
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cursor="send"
+          className="inline-flex items-center gap-3 mt-8 px-6 py-3 bg-paper text-ink font-mono text-[12px] uppercase tracking-[0.14em] hover:bg-red hover:text-paper transition-colors"
+        >
+          Message on WhatsApp →
+        </a>
       </div>
 
       {/* Scrolling availability marquee */}
