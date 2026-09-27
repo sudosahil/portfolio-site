@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Anton, Archivo, DM_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
-import { Preloader } from "@/components/Preloader";
-import { CustomCursor } from "@/components/CustomCursor";
+import { SiteChrome } from "@/components/SiteChrome";
 import { Analytics } from "@vercel/analytics/next";
 
 const anton = Anton({
@@ -110,11 +107,7 @@ export default function RootLayout({
             }),
           }}
         />
-        <Preloader />
-        <CustomCursor />
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
         <Analytics />
       </body>
     </html>
