@@ -1,49 +1,54 @@
 import type { Metadata } from "next";
-import { DevReveal } from "@/components/dev/DevReveal";
-import { DevSectionLabel } from "@/components/dev/DevSectionLabel";
-import { CopyEmail } from "@/components/dev/CopyEmail";
+import { Reveal, RevealLines } from "@/components/Reveal";
+import { LineDivider } from "@/components/LineDivider";
+import { SectionLabel } from "@/components/SectionLabel";
 import { devProfile } from "@/lib/dev-content";
 
 export const metadata: Metadata = { title: "Contact" };
 
+const channels = [
+  { label: "Email", value: devProfile.email, sub: "The fastest way to reach me.", href: `mailto:${devProfile.email}`, external: false },
+  { label: "LinkedIn", value: devProfile.linkedinHandle, sub: "Profile and professional history.", href: devProfile.linkedin, external: true },
+  { label: "GitHub", value: devProfile.githubHandle, sub: "Code and repositories.", href: devProfile.github, external: true },
+  { label: "Résumé", value: "Download PDF", sub: "One page, up to date.", href: devProfile.resume, external: true },
+];
+
 export default function DevContact() {
-  const cards = [
-    { label: "LinkedIn", value: devProfile.linkedinHandle, href: devProfile.linkedin, icon: "↗", external: true },
-    { label: "GitHub", value: devProfile.githubHandle, href: devProfile.github, icon: "↗", external: true },
-    { label: "Résumé", value: "sahil-undale.pdf", href: devProfile.resume, icon: "↓", external: false },
-  ];
-
   return (
-    <div className="mx-auto flex min-h-[calc(100svh-72px-120px)] max-w-[1440px] flex-col px-5 pb-24 pt-28 md:px-16 md:pb-[120px] md:pt-[200px]">
-      <DevReveal on="mount">
-        <DevSectionLabel>04 — Contact</DevSectionLabel>
-      </DevReveal>
-      <DevReveal on="mount" delay={0.12} className="mt-12">
-        <h1 className="sr-only">Contact</h1>
-        <CopyEmail email={devProfile.email} />
-      </DevReveal>
-      <DevReveal on="mount" delay={0.26}>
-        <p className="mt-7 text-[19px] text-[var(--dev-t2)]">Email is the fastest way to reach me.</p>
-      </DevReveal>
+    <div className="px-5 md:px-8 pb-16 md:pb-24">
+      {/* Hero */}
+      <section className="pt-28 md:pt-36 pb-12">
+        <Reveal>
+          <SectionLabel>Contact</SectionLabel>
+        </Reveal>
+        <h1 className="display mt-5 text-[15vw] md:text-[12vw] leading-none tracking-tighter2">
+          <RevealLines lines={["Get in"]} />
+          <span className="text-blue">
+            <RevealLines lines={["touch."]} delay={0.14} />
+          </span>
+        </h1>
+      </section>
 
-      <DevReveal on="mount" delay={0.4} className="mt-20 grid grid-cols-1 gap-4 md:mt-auto md:grid-cols-3 md:pt-24">
-        {cards.map((c) => (
-          <a
-            key={c.label}
-            href={c.href}
-            {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="dev-card flex h-[160px] flex-col justify-between rounded-[14px] border border-[var(--dev-line)] bg-[var(--dev-card)] p-7 md:h-[180px]"
-          >
-            <div className="dev-mono flex justify-between text-[var(--dev-t3)]">
-              <span>{c.label}</span>
-              <span aria-hidden className={`dev-arrow ${c.icon === "↓" ? "text-[var(--dev-a)]" : ""}`}>
-                {c.icon}
+      {/* Channels */}
+      <section>
+        <LineDivider />
+        {channels.map((c) => (
+          <Reveal key={c.label}>
+            <a
+              href={c.href}
+              {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              data-cursor="open"
+              className="group grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-7 border-b border-line"
+            >
+              <span className="md:col-span-3 font-mono text-[11px] uppercase tracking-[0.16em] text-grey">{c.label}</span>
+              <span className="md:col-span-6 text-[24px] md:text-[34px] font-medium tracking-tight break-words group-hover:text-blue transition-colors">
+                {c.value}
               </span>
-            </div>
-            <span className="text-[26px] tracking-[-0.02em]">{c.value}</span>
-          </a>
+              <span className="md:col-span-3 md:text-right text-[14px] text-grey-dark">{c.sub}</span>
+            </a>
+          </Reveal>
         ))}
-      </DevReveal>
+      </section>
     </div>
   );
 }

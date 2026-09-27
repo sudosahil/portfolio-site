@@ -2,73 +2,78 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { devNav, devProfile } from "@/lib/dev-content";
-
-function isActive(pathname: string, href: string) {
-  return href === "/dev" ? pathname === "/dev" : pathname.startsWith(href);
-}
+import { devNav as navLinks, devSocials as socials } from "@/lib/dev-content";
 
 export function DevNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [time, setTime] = useState("");
 
-  useEffect(() => setOpen(false), [pathname]);
+  // Mumbai (IST) clock — live local time in the bar, as on the business site.
+  useEffect(() => {
+    const tick = () =>
+      setTime(
+        new Intl.DateTimeFormat("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+          timeZone: "Asia/Kolkata",
+        }).format(new Date())
+      );
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--dev-line)] bg-[rgba(7,7,8,0.72)] backdrop-blur-md">
-        <div className="dev-mono mx-auto grid h-[60px] max-w-[1440px] grid-cols-[1fr_auto] items-center px-5 text-[var(--dev-t2)] md:h-[72px] md:grid-cols-[1fr_auto_1fr] md:px-16">
-          <Link href="/dev" className="flex items-center gap-3 text-[var(--dev-t1)]">
-            <span className="flex h-[22px] w-[22px] items-center justify-center border border-[var(--dev-t1)] text-[9px]">
-              SU
-            </span>
-            <span>{devProfile.name}</span>
+      <header className="fixed top-0 inset-x-0 z-[120] bg-[#0a0a0a]/85 backdrop-blur-md border-b border-line">
+        <div className="flex items-center justify-between px-5 md:px-8 h-16">
+          <Link
+            href="/dev"
+            className="font-display uppercase text-[19px] leading-none tracking-tight text-white"
+            data-cursor="home"
+          >
+            Sahil Undale<sup className="text-[9px] align-super">©</sup>
           </Link>
 
-          <nav aria-label="Profile" className="hidden gap-1.5 rounded-full border border-[var(--dev-line)] p-[5px] md:flex">
-            {devNav.map((l) => {
-              const active = isActive(pathname, l.href);
-              return (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  aria-current={active ? "page" : undefined}
-                  className={`relative flex items-center gap-2 rounded-full px-4 py-[9px] transition-colors ${
-                    active ? "text-[var(--dev-t1)]" : "text-[var(--dev-t2)] hover:text-[var(--dev-t1)]"
-                  }`}
-                >
-                  {active && (
-                    <motion.span
-                      layoutId="dev-nav-pill"
-                      className="absolute inset-0 rounded-full bg-[#141417] shadow-[inset_0_0_0_1px_var(--dev-line-2)]"
-                      transition={{ type: "spring", stiffness: 420, damping: 36 }}
-                    />
-                  )}
-                  {active && <span className="dev-dot-glow relative h-[5px] w-[5px] rounded-full bg-[var(--dev-a)]" />}
-                  <span className="relative">{l.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          <div className="hidden items-center justify-end gap-7 md:flex">
-            <span className="text-[var(--dev-t3)]">{devProfile.coords}</span>
-            <a href={devProfile.resume} className="flex items-center gap-2 text-[var(--dev-t1)]">
-              Résumé <span className="text-[var(--dev-a)]">↓</span>
-            </a>
+          <div className="hidden md:flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue animate-pulse" />
+            <span>Software Engineer · Mumbai</span>
+            <span className="opacity-50 tabular-nums">{time} IST</span>
           </div>
 
           <button
-            type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 justify-self-end rounded-full border border-[var(--dev-line-2)] md:hidden"
+            className="font-mono text-[12px] uppercase tracking-[0.18em] text-white flex items-center gap-2"
+            aria-label="Toggle menu"
+            data-cursor={open ? "close" : "menu"}
           >
-            <motion.span className="h-px w-3.5 bg-[var(--dev-t1)]" animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }} />
-            <motion.span className="h-px w-3.5 bg-[var(--dev-t1)]" animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }} />
+            <span>{open ? "Close" : "Menu"}</span>
+            <span className="flex flex-col gap-[3px] w-4">
+              <motion.span
+                className="block h-[1.5px] bg-white"
+                animate={open ? { rotate: 45, y: 4.5 } : { rotate: 0, y: 0 }}
+              />
+              <motion.span
+                className="block h-[1.5px] bg-white"
+                animate={open ? { rotate: -45, y: -4.5 } : { rotate: 0, y: 0 }}
+              />
+            </span>
           </button>
         </div>
       </header>
@@ -76,33 +81,70 @@ export function DevNav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-40 bg-[var(--dev-bg)] px-5 pt-[96px] md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[110] bg-ink text-white overflow-y-auto overscroll-contain"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           >
-            <ul className="border-t border-[var(--dev-line)]">
-              {devNav.map((l, i) => (
-                <motion.li
-                  key={l.href}
-                  className="border-b border-[var(--dev-line)]"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * i, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link href={l.href} className="flex items-baseline gap-4 py-5">
-                    <span className="dev-mono text-[var(--dev-t3)]">0{i + 1}</span>
-                    <span className={`text-[34px] tracking-[-0.04em] ${isActive(pathname, l.href) ? "text-[var(--dev-a)]" : ""}`}>
-                      {l.label}
-                    </span>
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-            <a href={devProfile.resume} className="dev-mono mt-8 flex h-12 items-center justify-center rounded-full bg-[var(--dev-a)] text-[var(--dev-bg)]">
-              Résumé ↓
-            </a>
+            <nav className="min-h-full flex flex-col justify-center max-w-6xl w-full mx-auto px-5 md:px-8 pt-24 pb-12">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 mb-6">
+                [ Index ]
+              </p>
+              <ul className="border-t border-line-light">
+                {navLinks.map((link, i) => {
+                  const activeLink = pathname === link.href;
+                  return (
+                    <li key={link.href} className="border-b border-line-light">
+                      <Link
+                        href={link.href}
+                        className="group flex items-baseline gap-4 md:gap-8 py-3 md:py-4"
+                        data-cursor="go"
+                      >
+                        <motion.span
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.25 + i * 0.05 }}
+                          className="font-mono text-[12px] text-white/40 w-8 shrink-0"
+                        >
+                          0{i + 1}
+                        </motion.span>
+                        <motion.span
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            delay: 0.25 + i * 0.05,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className={`display text-[10vw] md:text-[6vw] leading-none transition-colors duration-200 ${
+                            activeLink
+                              ? "text-blue"
+                              : "text-white group-hover:text-blue"
+                          }`}
+                        >
+                          {link.label}
+                        </motion.span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[12px] uppercase tracking-[0.12em] text-white/60 hover:text-blue transition-colors"
+                    data-cursor="open"
+                  >
+                    ↗ {s.label}
+                  </a>
+                ))}
+              </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

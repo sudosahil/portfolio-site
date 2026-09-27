@@ -1,44 +1,33 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Martian_Mono } from "next/font/google";
 import { DevNav } from "@/components/dev/DevNav";
 import { DevFooter } from "@/components/dev/DevFooter";
+import { DevPreloader } from "@/components/dev/DevPreloader";
+import { DevCursor } from "@/components/dev/DevCursor";
 import "./dev.css";
 
-// Host Grotesk isn't in next/font/google's list for Next 14, so it ships locally (SIL OFL, see fonts/).
-const hostGrotesk = localFont({
-  src: "./fonts/HostGrotesk-latin-wght.woff2",
-  weight: "300 800",
-  variable: "--font-host",
-  display: "swap",
-});
-
-const martianMono = Martian_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-  variable: "--font-martian",
-  display: "swap",
-});
+// Fonts (Anton, Archivo, DM Mono, Instrument Serif) come from the root layout,
+// so /dev shares the business site's type exactly.
 
 export const metadata: Metadata = {
   title: {
     default: "Sahil Undale — Software Engineer",
     template: "%s — Sahil Undale",
   },
-  description:
-    "Software engineer building full-stack systems, backends and applied-AI tools. Experience, technical work and résumé.",
+  description: "Software engineer based in Mumbai. Résumé, projects and contact.",
   openGraph: {
     title: "Sahil Undale — Software Engineer",
-    description: "Full-stack systems, backends and applied-AI tools.",
+    description: "Résumé, projects and contact.",
     url: "https://sahilundale.in/dev",
   },
 };
 
 export default function DevLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`dev-root ${hostGrotesk.variable} ${martianMono.variable} flex min-h-screen flex-col`}>
+    <div className="dev-root flex min-h-screen flex-col">
+      <DevPreloader />
+      <DevCursor />
       <DevNav />
-      <main className="flex-1 pt-[60px] md:pt-[72px]">{children}</main>
+      <main className="flex-1">{children}</main>
       <DevFooter />
     </div>
   );

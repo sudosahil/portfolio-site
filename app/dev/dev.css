@@ -1,154 +1,25 @@
-/* ─── /dev track — recruiter-facing styles, scoped to .dev-root ─── */
+/* /dev track — the business site's design language on a dark theme:
+   black / white / grey / blue. Scoped to .dev-root. */
 body:has(.dev-root) {
-  background: #070708;
+  background: #0a0a0a;
 }
-
 .dev-root {
-  --dev-bg: #070708;
-  --dev-card: #09090b;
-  --dev-card-hover: #0b0b0e;
-  --dev-line: #17171a;
-  --dev-line-2: #232328;
-  --dev-t1: #f2f2f3;
-  --dev-t2: #9b9ba3;
-  --dev-t3: #7d7d86;
-  --dev-a: #3b82f6;
-  --dev-glow: rgba(59, 130, 246, 0.45);
-  min-height: 100vh;
-  background: var(--dev-bg);
-  color: var(--dev-t1);
-  font-family: var(--font-host), system-ui, sans-serif;
-  font-weight: 300;
-  font-feature-settings: "tnum" 1;
-  -webkit-font-smoothing: antialiased;
+  background: #0a0a0a;
+  color: #ffffff;
 }
 .dev-root ::selection {
-  background: var(--dev-a);
-  color: var(--dev-bg);
-}
-.dev-root a:focus-visible,
-.dev-root button:focus-visible {
-  outline: 2px solid var(--dev-a);
-  outline-offset: 3px;
+  background: #105df1;
+  color: #ffffff;
 }
 
-.dev-mono {
-  font-family: var(--font-martian), ui-monospace, monospace;
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+/* shared business components (SectionLabel, LineDivider, Education) on dark */
+.dev-root .border-line { border-color: rgba(255, 255, 255, 0.14); }
+.dev-root .bg-line { background-color: rgba(255, 255, 255, 0.14); }
+.dev-root .text-grey { color: #8f8f8f; }
+.dev-root .text-grey-dark { color: #b3b3b3; }
 
-/* ─── ambient ─── */
-.dev-grid-bg {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 72px 72px;
-  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 70% 45%, #000 20%, transparent 72%);
-  mask-image: radial-gradient(ellipse 60% 70% at 70% 45%, #000 20%, transparent 72%);
-}
-@keyframes dev-scan {
-  from { transform: translateY(-10px); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  to { transform: translateY(100vh); opacity: 0; }
-}
-.dev-scan {
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.55) 60%, transparent);
-  animation: dev-scan 7s linear infinite;
-}
-@keyframes dev-blink { 50% { opacity: 0; } }
-.dev-caret {
-  display: inline-block;
-  width: 0.55em;
-  height: 0.8em;
-  margin-left: 0.3em;
-  background: var(--dev-a);
-  animation: dev-blink 1.1s steps(1) infinite;
-}
-/* blinking block caret after the last line of the hero name (RevealLines markup) */
-.dev-hero-name > span:last-child > span::after {
-  content: "";
-  display: inline-block;
-  width: 0.5em;
-  height: 0.7em;
-  margin-left: 0.12em;
-  background: var(--dev-a);
-  animation: dev-blink 1.1s steps(1) infinite;
-}
-@keyframes dev-drop {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-.dev-drop { animation: dev-drop 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
-@keyframes dev-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.55); }
-  70% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-}
-.dev-pulse { animation: dev-pulse 2.2s infinite; }
-.dev-dot-glow { box-shadow: 0 0 10px var(--dev-a); }
-@keyframes dev-flow { from { background-position: 0 0; } to { background-position: 24px 0; } }
-.dev-wire {
-  background-image: linear-gradient(90deg, var(--dev-a) 0 6px, transparent 6px 12px);
-  background-size: 12px 1px;
-  background-repeat: repeat-x;
-  animation: dev-flow 1.2s linear infinite;
-  opacity: 0.8;
-}
-.dev-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* ─── interactive surfaces ─── */
-.dev-btn { transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s; }
-.dev-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35), 0 0 32px -8px rgba(59, 130, 246, 0.6);
-}
-
-.dev-row { transition: background 0.35s; }
-.dev-row:hover { background: #0c0c0f; }
-.dev-row .dev-arrow { transition: transform 0.35s, color 0.35s; }
-.dev-row:hover .dev-arrow { transform: translateX(8px); color: var(--dev-a); }
-.dev-row .dev-name { transition: transform 0.35s; }
-.dev-row:hover .dev-name { transform: translateX(6px); }
-
-.dev-card { transition: border-color 0.35s, background 0.35s, box-shadow 0.35s; }
-.dev-card:hover {
-  border-color: var(--dev-glow);
-  background: var(--dev-card-hover);
-  box-shadow: 0 0 48px -20px rgba(59, 130, 246, 0.55);
-}
-.dev-card .dev-arrow { transition: transform 0.35s, color 0.35s, border-color 0.35s; }
-.dev-card:hover .dev-arrow { transform: translate(4px, -4px); color: var(--dev-a); border-color: var(--dev-a); }
-.dev-card .dev-corner { opacity: 0; transition: opacity 0.4s; }
-.dev-card:hover .dev-corner { opacity: 1; }
-
-.dev-node { transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s; }
-.dev-node:hover {
-  border-color: rgba(59, 130, 246, 0.55);
-  box-shadow: 0 0 40px -12px rgba(59, 130, 246, 0.6);
-  transform: translateY(-3px);
-}
-
-.dev-underline {
-  background-image: linear-gradient(var(--dev-a), var(--dev-a));
-  background-size: 0 1px;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.dev-underline:hover { background-size: 100% 1px; }
-
-.dev-next .dev-arrow { transition: transform 0.35s, color 0.35s; }
-.dev-next:hover .dev-arrow { transform: translateX(10px); color: var(--dev-a); }
-
-@media (prefers-reduced-motion: reduce) {
-  .dev-scan, .dev-caret, .dev-drop, .dev-pulse, .dev-wire,
-  .dev-hero-name > span:last-child > span::after { animation: none !important; }
-}
+/* brand blue, lifted slightly so small blue text stays readable on black */
+.dev-root .text-blue,
+.dev-root .hover\:text-blue:hover,
+.dev-root .group:hover .group-hover\:text-blue { color: #3d7bff; }
+.dev-root .hover\:border-blue:hover { border-color: #3d7bff; }
