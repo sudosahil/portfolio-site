@@ -24,90 +24,93 @@ body:has(.dev-root) {
 .dev-root .group:hover .group-hover\:text-blue { color: #3d7bff; }
 .dev-root .hover\:border-blue:hover { border-color: #3d7bff; }
 
-/* Tech stack — the hovered icon box expands in place into a card covering its old
-   position: logo enlarges on the left, name appears on the right. */
-.dev-proj { position: relative; }
-.dev-proj:hover, .dev-proj:focus-within { z-index: 30; }
+/* Tech stack — the hovered square stretches into a rectangular card:
+   logo enlarges on the left, name appears on the right. */
+.dev-proj {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+.dev-proj:hover,
+.dev-proj:focus-within { z-index: 30; }
 
-.dev-proj-card {
-  /* full-size card; clip-path starts it as exactly the 44px icon box */
-  --w: 208px;
-  --h: 64px;
-  --pad-y: calc((var(--h) - 44px) / 2);
+.dev-proj-box {
   position: absolute;
-  left: var(--dx);
-  top: calc(-1 * var(--pad-y));
-  width: var(--w);
-  height: var(--h);
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  gap: 0;
+  padding-left: 11px; /* (44 − 2 border − 20 logo) / 2 → logo centred */
+  overflow: hidden;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition:
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    gap 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.4s,
+    color 0.3s;
+}
+.dev-proj:hover .dev-proj-box,
+.dev-proj-box:focus-visible {
+  left: var(--dx);
+  top: -10px;
+  width: 208px;
+  height: 64px;
+  padding-left: 14px;
   gap: 14px;
-  padding: 0 16px;
   color: #ffffff;
   background:
     repeating-linear-gradient(0deg, rgba(61, 123, 255, 0.06) 0 1px, transparent 1px 3px),
     #0b1326;
-  border: 1px solid #3d7bff;
+  border-color: #3d7bff;
   box-shadow: 0 0 26px rgba(16, 93, 241, 0.45), inset 0 0 20px rgba(16, 93, 241, 0.16);
-  pointer-events: none;
-  opacity: 0;
-  clip-path: inset(
-    var(--pad-y)
-    calc(var(--w) - 44px + var(--dx))
-    var(--pad-y)
-    calc(-1 * var(--dx))
-  );
-  transition:
-    clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.06s ease;
-}
-.dev-proj:hover .dev-proj-card,
-.dev-proj:focus-within .dev-proj-card {
-  opacity: 1;
-  clip-path: inset(0 0 0 0);
-}
-/* light sweep across the card as it opens */
-.dev-proj-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 40%;
-  background: linear-gradient(90deg, transparent, rgba(61, 123, 255, 0.35), transparent);
-  transform: translateX(-100%);
-}
-.dev-proj:hover .dev-proj-card::after,
-.dev-proj:focus-within .dev-proj-card::after {
-  animation: dev-proj-sweep 0.7s 0.1s cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-@keyframes dev-proj-sweep {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(260%); }
 }
 
-/* logo starts centred on the old icon at icon size, then enlarges and settles on the left */
 .dev-proj-logo {
   display: flex;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  transition:
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s,
+    filter 0.3s;
+}
+.dev-proj-logo svg { width: 100%; height: 100%; }
+.dev-proj:hover .dev-proj-logo,
+.dev-proj-box:focus-visible .dev-proj-logo {
+  width: 36px;
+  height: 36px;
   color: #3d7bff;
   filter: drop-shadow(0 0 8px rgba(61, 123, 255, 0.7));
-  transform: translateX(calc(-1 * var(--dx) - 12px)) scale(0.56);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .dev-proj-name {
   white-space: nowrap;
   opacity: 0;
-  transform: translateX(-10px);
-  transition: opacity 0.25s 0.12s, transform 0.4s 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-8px);
+  transition: opacity 0.2s, transform 0.3s;
 }
-.dev-proj:hover .dev-proj-logo,
-.dev-proj:focus-within .dev-proj-logo { transform: none; }
 .dev-proj:hover .dev-proj-name,
-.dev-proj:focus-within .dev-proj-name { opacity: 1; transform: none; }
+.dev-proj-box:focus-visible .dev-proj-name {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s 0.15s, transform 0.4s 0.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .dev-proj-card, .dev-proj-logo, .dev-proj-name { transition: opacity 0.15s !important; }
-  .dev-proj-card::after { animation: none !important; }
+  .dev-proj-box, .dev-proj-logo, .dev-proj-name { transition: none !important; }
 }

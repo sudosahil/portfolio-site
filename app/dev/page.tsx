@@ -38,7 +38,7 @@ export default function DevHome() {
             >
               Résumé ↓
             </a>
-            {devSocials.map((s) => (
+            {devSocials.filter((s) => s.label !== "Email").map((s) => (
               <a
                 key={s.label}
                 href={s.href}

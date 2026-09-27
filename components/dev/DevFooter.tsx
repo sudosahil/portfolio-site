@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Marquee } from "../Marquee";
 import { devProfile, devSocials } from "@/lib/dev-content";
 
 /** /dev footer — same structure as the business footer, in black / white / blue. */
 export function DevFooter() {
+  const isHome = usePathname() === "/dev";
   return (
     <footer className="bg-black text-white relative overflow-hidden border-t border-line">
-      {/* Giant link */}
+      {/* Giant link — not on the /dev home, which already links to Contact */}
+      {!isHome && (
       <div className="px-5 md:px-8 pt-20 md:pt-28 pb-10">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 mb-6">[ Get in touch ]</p>
         <Link href="/dev/contact" className="group block" data-cursor="contact">
@@ -35,6 +38,7 @@ export function DevFooter() {
           </a>
         </div>
       </div>
+      )}
 
       {/* Marquee */}
       <div className="border-y border-line-light py-3">
