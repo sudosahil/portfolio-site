@@ -10,15 +10,15 @@ export default function DevHome() {
   const stack = devStack.flatMap((g) => g.items);
 
   return (
-    <section className="min-h-[100svh] px-5 md:px-8 pt-28 md:pt-24 pb-12 md:pb-10 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-6">
+    <section className="px-5 md:px-8 pt-24 md:pt-[max(88px,11svh)] pb-12 md:pb-8 md:min-h-[100svh] grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-6 md:items-start">
       {/* ── Left: name ── */}
-      <div className="md:col-span-6 flex flex-col justify-center">
+      <div className="md:col-span-6">
         <Reveal>
           <SectionLabel>
             {devProfile.title} · {devProfile.location}
           </SectionLabel>
         </Reveal>
-        <h1 className="display mt-5 text-[22vw] md:text-[14vw] leading-none tracking-tighter2">
+        <h1 className="display mt-4 text-[22vw] md:text-[min(13vw,27svh)] leading-[0.92] tracking-[-0.01em]">
           <RevealLines lines={["Sahil"]} />
           <span className="text-blue">
             <RevealLines lines={["Undale."]} delay={0.14} />
@@ -27,10 +27,10 @@ export default function DevHome() {
       </div>
 
       {/* ── Right: profile, links, pages, stack ── */}
-      <div className="md:col-span-5 md:col-start-8 flex flex-col justify-center gap-10">
+      <div className="md:col-span-5 md:col-start-8 flex flex-col gap-10 md:gap-[min(2.5rem,4.5svh)] md:pt-8">
         <Reveal delay={0.15}>
-          <p className="text-[20px] md:text-[24px] leading-[1.35] tracking-tight">{devProfile.oneLiner}</p>
-          <div className="mt-6 flex flex-wrap gap-2">
+          <p className="text-[20px] md:text-[22px] leading-[1.35] tracking-tight">{devProfile.oneLiner}</p>
+          <div className="mt-5 flex flex-wrap gap-2">
             <a
               href={devProfile.resume}
               target="_blank"
@@ -58,9 +58,9 @@ export default function DevHome() {
           <ul className="border-t border-line">
             {pages.map((p, i) => (
               <li key={p.href} className="border-b border-line">
-                <Link href={p.href} data-cursor="go" className="group flex items-baseline gap-4 py-3">
+                <Link href={p.href} data-cursor="go" className="group flex items-baseline gap-4 py-2.5">
                   <span className="font-mono text-[12px] text-grey w-8 shrink-0">0{i + 1}</span>
-                  <span className="display text-[12vw] md:text-[3.6vw] leading-none transition-colors duration-200 group-hover:text-blue">
+                  <span className="display text-[12vw] md:text-[min(3.4vw,6.5svh)] leading-none transition-colors duration-200 group-hover:text-blue">
                     {p.label}
                   </span>
                   <span className="ml-auto self-center font-mono text-[12px] text-grey transition-transform duration-300 group-hover:translate-x-2 group-hover:text-blue">
@@ -76,12 +76,19 @@ export default function DevHome() {
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-grey mb-4">[ Tech stack ]</p>
           <ul className="flex flex-wrap gap-2">
             {stack.map((id) => (
-              <li key={id}>
+              <li key={id} className="dev-stack-item relative">
                 <span
-                  title={stackLogos[id].name}
-                  className="flex h-11 w-11 items-center justify-center border border-line text-white/80 transition-colors hover:border-blue hover:text-blue"
+                  tabIndex={0}
+                  className="flex h-11 w-11 items-center justify-center border border-line text-white/80 outline-none transition-colors hover:border-blue hover:text-blue focus-visible:border-blue focus-visible:text-blue"
                 >
                   <StackLogo id={id} size={20} />
+                </span>
+                {/* Hover card: grows out of the icon with the logo enlarged and the name beside it */}
+                <span role="tooltip" className="dev-stack-pop">
+                  <StackLogo id={id} size={30} className="shrink-0 text-blue" />
+                  <span className="font-mono text-[12px] uppercase tracking-[0.12em] whitespace-nowrap">
+                    {stackLogos[id].name}
+                  </span>
                 </span>
               </li>
             ))}
