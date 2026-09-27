@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Reveal, RevealLines } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
-import { StackLogo } from "@/components/dev/StackLogo";
+import { StackProjector } from "@/components/dev/StackProjector";
 import { devNav, devProfile, devSocials, devStack } from "@/lib/dev-content";
-import { stackLogos } from "@/lib/dev-stack";
 
 export default function DevHome() {
   const pages = devNav.slice(1);
@@ -74,25 +73,7 @@ export default function DevHome() {
 
         <Reveal delay={0.35}>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-grey mb-4">[ Tech stack ]</p>
-          <ul className="flex flex-wrap gap-2">
-            {stack.map((id) => (
-              <li key={id} className="dev-stack-item relative">
-                <span
-                  tabIndex={0}
-                  className="flex h-11 w-11 items-center justify-center border border-line text-white/80 outline-none transition-colors hover:border-blue hover:text-blue focus-visible:border-blue focus-visible:text-blue"
-                >
-                  <StackLogo id={id} size={20} />
-                </span>
-                {/* Hover card: grows out of the icon with the logo enlarged and the name beside it */}
-                <span role="tooltip" className="dev-stack-pop">
-                  <StackLogo id={id} size={30} className="shrink-0 text-blue" />
-                  <span className="font-mono text-[12px] uppercase tracking-[0.12em] whitespace-nowrap">
-                    {stackLogos[id].name}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
+          <StackProjector ids={stack} />
         </Reveal>
       </div>
     </section>
