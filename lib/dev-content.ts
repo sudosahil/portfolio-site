@@ -10,7 +10,7 @@ export const devProfile = {
   name: "Sahil Undale",
   title: "Software Engineer",
   location: "Mumbai, IN",
-  oneLiner: "Software engineering student at K J Somaiya, building backend systems and full-stack web apps.",
+  oneLiner: "Software developer building backend systems and full-stack web apps.",
   email: "sahil22undale@gmail.com",
   linkedin: "https://linkedin.com/in/sahil-undale",
   linkedinHandle: "linkedin.com/in/sahil-undale",

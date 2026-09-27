@@ -26,9 +26,9 @@ export default function DevHome() {
       </div>
 
       {/* ── Right: profile, links, pages, stack ── */}
-      <div className="md:col-span-5 md:col-start-8 flex flex-col gap-10 md:gap-[min(2.5rem,4.5svh)] md:pt-8">
+      <div className="md:col-span-6 md:col-start-7 md:pl-4 lg:pl-8 flex flex-col gap-10 md:gap-[min(2.5rem,4.5svh)] md:pt-8">
         <Reveal delay={0.15}>
-          <p className="text-[20px] md:text-[22px] leading-[1.35] tracking-tight">{devProfile.oneLiner}</p>
+          <p className="text-[20px] md:text-[22px] leading-[1.35] tracking-tight [text-wrap:balance]">{devProfile.oneLiner}</p>
           <div className="mt-5 flex flex-wrap gap-2">
             <a
               href={devProfile.resume}
