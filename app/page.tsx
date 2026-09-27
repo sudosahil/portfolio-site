@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LandingPreloader } from "@/components/LandingPreloader";
+import { LandingClock } from "@/components/LandingClock";
 import "./landing.css";
 
 export const metadata: Metadata = {
@@ -8,7 +10,7 @@ export const metadata: Metadata = {
     "Sahil Undale, Mumbai. Studio: websites and web apps for businesses. Dev: résumé, projects and contact for recruiters.",
 };
 
-const doors = [
+const halves = [
   {
     href: "/studio",
     num: "01",
@@ -31,50 +33,50 @@ const doors = [
 
 export default function Landing() {
   return (
-    <div className="landing-root flex min-h-[100svh] flex-col bg-[#0a0a0a] px-5 pb-5 text-white md:px-8 md:pb-8">
-      <header className="flex h-16 items-center justify-between md:h-[72px]">
-        <span className="display text-[19px] leading-none">
-          SU<sup className="text-[9px]">©</sup>
-        </span>
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#8f8f8f]">sahilundale.in</span>
-      </header>
+    <div className="landing-root flex min-h-[100svh] flex-col bg-[#0a0a0a] text-white">
+      <LandingPreloader />
 
-      <main className="flex flex-1 flex-col items-center justify-center py-10">
-        <p className="text-center font-mono text-[11px] uppercase tracking-[0.2em] text-[#8f8f8f] md:text-[13px]">
-          [ Software engineer · Web developer · Mumbai ]
-        </p>
-        <h1 className="display mt-5 text-center text-[22vw] leading-[0.86] md:mt-6 md:whitespace-nowrap md:text-[min(17.5vw,262px)]">
+      <header className="flex items-center justify-between gap-6 border-b border-white/[0.14] px-5 py-6 md:h-[132px] md:px-8 md:py-0">
+        <h1 className="display text-[15vw] leading-[0.9] md:text-[88px]">
           Sahil Undale<span className="text-[#3d7bff]">.</span>
         </h1>
-        <p className="mt-5 text-[18px] tracking-tight text-[#b3b3b3] md:mt-6 md:text-[22px]">Pick where you want to go.</p>
+        <div className="hidden text-right font-mono text-[12px] uppercase tracking-[0.16em] md:block">
+          <div className="flex items-center justify-end gap-2.5">
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-[#105df1]" />
+            Mumbai · <span className="text-[#8f8f8f]"><LandingClock /></span>
+          </div>
+          <a href="mailto:sahil22undale@gmail.com" className="mt-2.5 block text-[#8f8f8f] transition-colors hover:text-white">
+            sahil22undale@gmail.com
+          </a>
+        </div>
+      </header>
 
-        <nav aria-label="Choose a site" className="mt-10 grid w-full grid-cols-1 gap-3 md:mt-12 md:grid-cols-2 md:gap-4">
-          {doors.map((d) => (
-            <Link
-              key={d.href}
-              href={d.href}
-              aria-label={d.label}
-              className={`landing-card ${d.className} flex h-[200px] flex-col justify-between p-6 md:h-[260px] md:px-8 md:py-7`}
-            >
-              <div className="flex justify-between">
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em]">
-                  {d.num} — {d.audience}
-                </span>
-                <span aria-hidden className="landing-arrow text-[24px] leading-none">
-                  ↗
+      <nav aria-label="Choose a site" className="flex flex-1 flex-col md:flex-row">
+        {halves.map((h) => (
+          <Link
+            key={h.href}
+            href={h.href}
+            aria-label={h.label}
+            className={`landing-half ${h.className} flex min-h-[40svh] flex-1 flex-col justify-between px-5 pb-7 pt-7 md:min-h-0 md:px-8 md:pb-10 md:pt-12`}
+          >
+            <p className="landing-muted font-mono text-[15px] uppercase tracking-[0.18em] md:text-[20px]">
+              [ {h.num} — {h.audience} ]
+            </p>
+            <div>
+              <div className="display text-[26vw] leading-[0.86] md:text-[min(13.6vw,196px)]">
+                {h.title}
+                <span className="landing-accent">.</span>
+              </div>
+              <div className="mt-5 flex items-center justify-between gap-4 md:mt-7">
+                <span className="landing-sub text-[17px] tracking-tight md:text-[22px]">{h.sub}</span>
+                <span aria-hidden className="landing-arrow shrink-0 font-mono text-[13px] uppercase tracking-[0.2em]">
+                  Enter →
                 </span>
               </div>
-              <div>
-                <div className="display text-[72px] md:text-[104px]">
-                  {d.title}
-                  <span className="landing-accent">.</span>
-                </div>
-                <div className="landing-sub mt-3 text-[16px] md:text-[18px]">{d.sub}</div>
-              </div>
-            </Link>
-          ))}
-        </nav>
-      </main>
+            </div>
+          </Link>
+        ))}
+      </nav>
     </div>
   );
 }

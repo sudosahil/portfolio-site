@@ -1,63 +1,72 @@
-/* Root landing page (sahilundale.in/) — two doors: Studio (freelance) and Dev (portfolio). */
+/* Root landing page (sahilundale.in/) — split halves: Studio (freelance) and Dev (portfolio). */
 body:has(.landing-root) {
   background: #0a0a0a;
 }
 
-.landing-card {
+.landing-half {
   position: relative;
   overflow: hidden;
-  transition: background-color 0.35s, color 0.35s, border-color 0.35s, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.35s, color 0.35s, flex-grow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.landing-card:hover,
-.landing-card:focus-visible {
-  transform: translateY(-6px);
+@media (min-width: 768px) {
+  .landing-half:hover,
+  .landing-half:focus-visible {
+    flex-grow: 1.35;
+  }
 }
-.landing-card:focus-visible {
+.landing-half:focus-visible {
   outline: 2px solid #ffffff;
-  outline-offset: 4px;
+  outline-offset: -6px;
 }
 /* highlight sweep across the block on hover */
-.landing-card::after {
+.landing-half::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
   left: -60%;
-  width: 45%;
-  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   transform: skewX(-18deg);
   opacity: 0;
   pointer-events: none;
 }
-.landing-card:hover::after,
-.landing-card:focus-visible::after {
+.landing-half:hover::after,
+.landing-half:focus-visible::after {
   animation: landing-sweep 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes landing-sweep {
   0% { left: -60%; opacity: 1; }
   100% { left: 130%; opacity: 1; }
 }
-.landing-card .landing-arrow { transition: transform 0.35s; }
-.landing-card:hover .landing-arrow { transform: translate(6px, -6px); }
+.landing-half .landing-arrow { transition: transform 0.35s; }
+.landing-half:hover .landing-arrow { transform: translateX(10px); }
 
 /* Studio — the business palette: beige / ink / red */
-.landing-studio { background: #f4f2ea; color: #0d0d0d; border: 1px solid #f4f2ea; }
+.landing-studio { background: #f4f2ea; color: #0d0d0d; }
 .landing-studio .landing-sub { color: #393939; }
+.landing-studio .landing-muted { color: #6b685f; }
 .landing-studio .landing-accent { color: #dc3429; }
-.landing-studio:hover { background: #dc3429; border-color: #dc3429; color: #f4f2ea; }
+.landing-studio:hover { background: #dc3429; color: #f4f2ea; }
 .landing-studio:hover .landing-sub,
+.landing-studio:hover .landing-muted,
 .landing-studio:hover .landing-accent { color: #f4f2ea; }
 
 /* Dev — black / white / blue */
-.landing-dev { background: #0a0a0a; color: #ffffff; border: 1px solid #105df1; }
+.landing-dev { background: #0a0a0a; color: #ffffff; box-shadow: inset 0 1px 0 #105df1; }
+@media (min-width: 768px) {
+  .landing-dev { box-shadow: inset 1px 0 0 #105df1; }
+}
 .landing-dev .landing-sub { color: #b3b3b3; }
+.landing-dev .landing-muted { color: #8f8f8f; }
 .landing-dev .landing-accent { color: #3d7bff; }
 .landing-dev:hover { background: #105df1; }
 .landing-dev:hover .landing-sub,
+.landing-dev:hover .landing-muted,
 .landing-dev:hover .landing-accent { color: #ffffff; }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-card,
-  .landing-card::after,
-  .landing-card .landing-arrow { animation: none !important; transition: none !important; }
+  .landing-half,
+  .landing-half::after,
+  .landing-half .landing-arrow { animation: none !important; transition: none !important; }
 }
