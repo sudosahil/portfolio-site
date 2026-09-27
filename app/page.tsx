@@ -59,9 +59,7 @@ export default function Landing() {
             aria-label={h.label}
             className={`landing-half ${h.className} flex min-h-[40svh] flex-1 flex-col justify-between px-5 pb-7 pt-7 md:min-h-0 md:px-8 md:pb-10 md:pt-12`}
           >
-            <p className="landing-muted font-mono text-[15px] uppercase tracking-[0.18em] md:text-[20px]">
-              [ {h.num} — {h.audience} ]
-            </p>
+            <p className="text-[24px] font-bold leading-none tracking-tight md:text-[34px]">{h.audience}</p>
             <div>
               <div className="display text-[26vw] leading-[0.86] md:text-[min(13.6vw,196px)]">
                 {h.title}
