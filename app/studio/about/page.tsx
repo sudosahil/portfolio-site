@@ -3,7 +3,6 @@ import { Reveal, RevealLines } from "@/components/Reveal";
 import { LineDivider } from "@/components/LineDivider";
 import { Marquee } from "@/components/Marquee";
 import { SectionLabel } from "@/components/SectionLabel";
-import { Education } from "@/components/Education";
 import { skills } from "@/lib/content";
 
 const brandImages = [
@@ -81,11 +80,6 @@ export default function AboutPage() {
             </Reveal>
           ))}
         </div>
-      </section>
-
-      {/* Education */}
-      <section className="px-5 md:px-8 pb-16 md:pb-24">
-        <Education />
       </section>
 
       {/* Brand */}

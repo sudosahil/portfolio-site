@@ -18,7 +18,7 @@ export function Footer() {
           [ Got a project? ]
         </p>
         <Link
-          href="/contact"
+          href="/studio/contact"
           className="group block"
           data-cursor="let's talk"
         >

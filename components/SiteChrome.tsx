@@ -9,14 +9,14 @@ import { CustomCursor } from "./CustomCursor";
 
 /**
  * Wraps pages in the business site's chrome (preloader, custom cursor, nav,
- * footer). The recruiter-facing /dev track brings its own layout, so it
- * renders bare here. Every other route renders exactly as before.
+ * footer) — only on the freelance /studio track. The root landing page and
+ * the recruiter-facing /dev track bring their own layouts and render bare.
  */
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "";
-  const isDevTrack = pathname === "/dev" || pathname.startsWith("/dev/");
+  const isStudio = pathname === "/studio" || pathname.startsWith("/studio/");
 
-  if (isDevTrack) {
+  if (!isStudio) {
     return <>{children}</>;
   }
 

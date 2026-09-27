@@ -6,13 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/what-i-do", label: "What I Do" },
-  { href: "/my-projects", label: "My Projects" },
-  { href: "/work", label: "Work" },
-  { href: "/resume", label: "Resume" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/studio", label: "Home" },
+  { href: "/studio/what-i-do", label: "What I Do" },
+  { href: "/studio/my-projects", label: "My Projects" },
+  { href: "/studio/about", label: "About" },
+  { href: "/studio/contact", label: "Contact" },
 ];
 
 const socials = [
@@ -59,7 +57,7 @@ export function Nav() {
       <header className="fixed top-0 inset-x-0 z-[120] mix-blend-difference">
         <div className="flex items-center justify-between px-5 md:px-8 h-16">
           <Link
-            href="/"
+            href="/studio"
             className="font-display uppercase text-[19px] leading-none tracking-tight text-paper"
             data-cursor="home"
           >
