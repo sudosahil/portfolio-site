@@ -182,17 +182,6 @@ export const experiences = [
     ],
   },
   {
-    role: "Performance Marketing Intern",
-    company: "RevBoosters",
-    dateRange: "May 2025 — Jul 2025",
-    bullets: [
-      "Managed Shopify backend for multiple brand clients",
-      "Daily sanity checks on website and sales data",
-      "Analysed sales patterns for discount strategy",
-      "Identified high-performing products for ad ideation",
-    ],
-  },
-  {
     role: "Research Analyst Intern",
     company: "Next Gen Community (NGC)",
     dateRange: "Jan 2025 — Apr 2025",
