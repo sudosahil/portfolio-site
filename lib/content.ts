@@ -173,7 +173,7 @@ export const experiences = [
   {
     role: "Software Developer",
     company: "Atraya Technologies",
-    dateRange: "May 2025 — Present",
+    dateRange: "May 2025 — Aug 2026",
     bullets: [
       "End-to-end development of business systems for government and private-sector clients",
       "Backend, frontend, and database development from formal client requirements",
