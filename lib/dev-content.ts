@@ -2,7 +2,7 @@
  * Content for the recruiter-facing /dev track (Home · Résumé · Projects · Contact).
  * Kept separate from lib/content.ts so the business site's copy is untouched.
  *
- * TODO: add Mini Raft's GitHub URL, and PMIS's repo + stack if public.
+ * TODO: PMIS's repo + stack, if public.
  */
 import type { StackKey } from "./dev-stack";
 
@@ -124,7 +124,7 @@ export const devProjects: DevProject[] = [
       "The Raft consensus algorithm implemented from the paper in Java: randomized-timeout leader election, log replication and majority-based commit across a 3-node replicated key-value store. Term, vote and log persist to disk, so a crashed node restarts as a follower and repairs its log. Election, commit safety and crash recovery are verified with JUnit 5 tests on a simulated in-process RPC layer.",
     stack: ["java"],
     extraTags: ["Maven", "JUnit 5"],
-    // github: "https://github.com/sudosahil/…",
+    github: "https://github.com/sudosahil/mini-raft-database",
   },
 
 ];
