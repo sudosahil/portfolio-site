@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Reveal, RevealLines } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { LineDivider } from "@/components/LineDivider";
@@ -31,7 +32,7 @@ export default function DevProjects() {
             <article className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 py-10 md:py-14 border-b border-line">
               <div className="md:col-span-5">
                 <p className="font-mono text-[12px] uppercase tracking-[0.1em] text-blue">
-                  0{i + 1} — {p.kind}
+                  {String(i + 1).padStart(2, "0")} — {p.kind}
                 </p>
                 <h2 className="display text-[14vw] md:text-[6vw] leading-none mt-3">{p.name}</h2>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -42,6 +43,19 @@ export default function DevProjects() {
 
               <div className="md:col-span-7 md:col-start-6 md:pt-8">
                 <p className="text-[18px] md:text-[20px] leading-[1.5] tracking-tight max-w-2xl">{p.description}</p>
+
+                {p.image && (
+                  <figure className="mt-8 overflow-hidden border border-line bg-white">
+                    <Image
+                      src={p.image.src}
+                      alt={p.image.alt}
+                      width={p.image.width}
+                      height={p.image.height}
+                      sizes="(min-width: 768px) 55vw, 100vw"
+                      className="h-auto w-full"
+                    />
+                  </figure>
+                )}
 
                 {(p.stack.length > 0 || p.extraTags) && (
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -54,6 +68,7 @@ export default function DevProjects() {
                   </div>
                 )}
 
+                {(p.github || p.live) && (
                 <div className="mt-8 flex flex-wrap gap-3">
                   {p.github && (
                     <a
@@ -77,10 +92,8 @@ export default function DevProjects() {
                       Live site ↗
                     </a>
                   )}
-                  {!p.github && !p.live && (
-                    <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-grey">Repository coming soon</span>
-                  )}
                 </div>
+                )}
               </div>
             </article>
           </Reveal>
