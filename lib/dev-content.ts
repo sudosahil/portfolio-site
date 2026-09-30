@@ -120,10 +120,11 @@ export const devProjects: DevProject[] = [
     name: "Mini Raft",
     kind: "Distributed systems",
     year: "2026",
-    status: "In progress",
     description:
-      "A replicated key-value store in Java built on the Raft consensus algorithm — leader election and log replication, so a cluster of nodes agrees on one log even when some of them fail.",
+      "The Raft consensus algorithm implemented from the paper in Java: randomized-timeout leader election, log replication and majority-based commit across a 3-node replicated key-value store. Term, vote and log persist to disk, so a crashed node restarts as a follower and repairs its log. Election, commit safety and crash recovery are verified with JUnit 5 tests on a simulated in-process RPC layer.",
     stack: ["java"],
+    extraTags: ["Maven", "JUnit 5"],
     // github: "https://github.com/sudosahil/…",
   },
+
 ];
