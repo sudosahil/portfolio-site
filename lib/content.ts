@@ -70,7 +70,7 @@ export const caseProjects: CaseProject[] = [
     tagline: "Innovation studio.",
     description:
       "A corporate site for a technology and innovation studio. Dark, motion-led, and confident, it frames the studio's work and capabilities for prospective partners and clients.",
-    liveUrl: "https://theoremlabs-xi.vercel.app/",
+    liveUrl: "https://theoremlabs-website.vercel.app/",
     category: "Corporate",
     industry: "Technology",
     year: "2025",
