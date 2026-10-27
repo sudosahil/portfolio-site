@@ -44,6 +44,7 @@ export const caseProjects: CaseProject[] = [
     industry: "Fintech Integration",
     year: "2025",
     tags: ["Web Application", "Booking System", "Fintech Integration"],
+    settleScreenshot: true,
   },
   {
     name: "Siddhi Coaching Classes",

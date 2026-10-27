@@ -15,14 +15,19 @@ export interface CaseProject {
   year: string;
   /** Business-impact tags (e.g. "Enterprise SaaS"). When present, shown as pills instead of the category/industry line. */
   tags?: string[];
+  /** Delay the thumbnail capture until entrance animations finish. */
+  settleScreenshot?: boolean;
 }
 
 // Capture at a 4:3 viewport so the screenshot matches the card frame exactly
 // (aspect-[4/3]) and fills it without awkward cropping.
-function screenshotUrl(siteUrl: string) {
+// `settle` waits out entrance animations that would otherwise capture as blank.
+function screenshotUrl(siteUrl: string, settle?: boolean) {
   return `https://api.microlink.io?url=${encodeURIComponent(
     siteUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=960&waitUntil=networkidle2&waitForTimeout=2500`;
+  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=960${
+    settle ? "&waitUntil=networkidle2&waitForTimeout=2500" : ""
+  }`;
 }
 
 // The live preview renders the real site at this desktop viewport, then scales
@@ -180,7 +185,7 @@ export function CaseCard({
       >
         {!err ? (
           <img
-            src={screenshotUrl(project.liveUrl)}
+            src={screenshotUrl(project.liveUrl, project.settleScreenshot)}
             alt={`${project.name} preview`}
             className="w-full h-full object-cover object-top transition-transform duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             loading="lazy"
