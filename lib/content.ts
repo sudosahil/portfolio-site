@@ -79,13 +79,14 @@ export const caseProjects: CaseProject[] = [
   },
   {
     name: "TheoremLabs",
-    tagline: "Innovation studio.",
+    tagline: "The new software era.",
     description:
-      "A corporate site for a technology and innovation studio. Dark, motion-led, and confident, it frames the studio's work and capabilities for prospective partners and clients.",
+      "Corporate site for a fintech-focused consulting and build studio. It presents the advisory practice, experimentation labs and AI accelerators that help financial organizations ship AI, data, cloud and Web3 products.",
     liveUrl: "https://theoremlabs-website.vercel.app/",
     category: "Corporate",
-    industry: "Technology",
+    industry: "Fintech Consulting",
     year: "2025",
+    tags: ["Corporate", "Fintech Consulting", "Brand Platform"],
   },
 ];
 

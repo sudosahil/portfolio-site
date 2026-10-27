@@ -3,21 +3,6 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { CaseCard } from "@/components/CaseCard";
 import { caseProjects } from "@/lib/content";
 
-const extraProjects = [
-  {
-    name: "Personal Portfolio",
-    tagline: "You're on it.",
-    description:
-      "This site. A fast, hand-built portfolio and services site — the work, the process, and a direct line to start a project. Designed and coded from scratch in Next.js with custom motion throughout.",
-    liveUrl: "https://sahilundale.in",
-    category: "Portfolio",
-    industry: "Personal",
-    year: "2025",
-  },
-];
-
-const allProjects = [...caseProjects, ...extraProjects];
-
 export default function MyProjectsPage() {
   return (
     <div>
@@ -40,7 +25,7 @@ export default function MyProjectsPage() {
       {/* Grid */}
       <section className="px-5 md:px-8 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-          {allProjects.map((p, i) => (
+          {caseProjects.map((p, i) => (
             <CaseCard key={p.name} project={p} index={i} />
           ))}
         </div>
