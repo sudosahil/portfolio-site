@@ -58,16 +58,6 @@ export const caseProjects: CaseProject[] = [
     tags: ["Educational Portal", "CMS", "Full Stack"],
   },
   {
-    name: "Samrat Driving School",
-    tagline: "Learn to drive.",
-    description:
-      "A marketing site for a driving school running since 2000 in Chhatrapati Sambhajinagar. It lays out the 15-day, 120 km car-training course, walks visitors through how it works, and routes every enquiry straight to WhatsApp — backed by a wall of 4.8-star Google reviews.",
-    liveUrl: "https://samrat-driving-school-zc3d.vercel.app/",
-    category: "Business",
-    industry: "Education",
-    year: "2024",
-  },
-  {
     name: "Earthen Routes",
     tagline: "Food that heals.",
     description:
