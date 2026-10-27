@@ -15,6 +15,8 @@ export interface CaseProject {
   year: string;
   /** Business-impact tags (e.g. "Enterprise SaaS"). When present, shown as pills instead of the category/industry line. */
   tags?: string[];
+  /** Local thumbnail in /public; skips the microlink capture entirely. */
+  image?: string;
   /** Delay the thumbnail capture until entrance animations finish. */
   settleScreenshot?: boolean;
 }
@@ -185,7 +187,7 @@ export function CaseCard({
       >
         {!err ? (
           <img
-            src={screenshotUrl(project.liveUrl, project.settleScreenshot)}
+            src={project.image ?? screenshotUrl(project.liveUrl, project.settleScreenshot)}
             alt={`${project.name} preview`}
             className="w-full h-full object-cover object-top transition-transform duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
             loading="lazy"

@@ -87,6 +87,7 @@ export const caseProjects: CaseProject[] = [
     industry: "Fintech Consulting",
     year: "2025",
     tags: ["Corporate", "Fintech Consulting", "Brand Platform"],
+    image: "/projects/theoremlabs.png",
   },
 ];
 
