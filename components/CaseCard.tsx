@@ -22,7 +22,7 @@ export interface CaseProject {
 function screenshotUrl(siteUrl: string) {
   return `https://api.microlink.io?url=${encodeURIComponent(
     siteUrl
-  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=960`;
+  )}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=960&waitUntil=networkidle2&waitForTimeout=2500`;
 }
 
 // The live preview renders the real site at this desktop viewport, then scales

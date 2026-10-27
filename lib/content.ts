@@ -2,6 +2,17 @@ import type { CaseProject } from "@/components/CaseCard";
 
 export const caseProjects: CaseProject[] = [
   {
+    name: "The Autocops",
+    tagline: "Pre-owned luxury cars, priced openly.",
+    description:
+      "Showroom site for a pre-owned luxury car dealership in Kalyani Nagar, Pune. Showcases inspected Mercedes-Benz, BMW, Lexus and Land Rover inventory with transparent pricing and clear enquiry paths.",
+    liveUrl: "https://autocops-web.vercel.app/",
+    category: "Automotive",
+    industry: "Car Dealership",
+    year: "2026",
+    tags: ["Automotive", "Inventory Showcase", "Lead Generation"],
+  },
+  {
     name: "PMIS",
     tagline: "Projects, procurement, payments — one system.",
     description:
